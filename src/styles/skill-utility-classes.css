@@ -1,0 +1,333 @@
+/**
+ * Skill UI Components - Utility Classes
+ * 工具类样式 - 用于快速应用常见样式
+ *
+ * 包含：
+ * - 毛玻璃效果（Backdrop Blur）
+ * - 复杂阴影
+ * - 渐变背景
+ * - 大圆角
+ * - 其他实用工具
+ */
+
+/* ===== 毛玻璃效果 (Backdrop Blur) ===== */
+
+.backdrop-blur-none {
+  backdrop-filter: blur(0);
+  -webkit-backdrop-filter: blur(0);
+}
+
+.backdrop-blur-sm {
+  backdrop-filter: blur(var(--skill-backdrop-blur-sm));
+  -webkit-backdrop-filter: blur(var(--skill-backdrop-blur-sm));
+}
+
+.backdrop-blur-md {
+  backdrop-filter: blur(var(--skill-backdrop-blur-md));
+  -webkit-backdrop-filter: blur(var(--skill-backdrop-blur-md));
+}
+
+.backdrop-blur-lg {
+  backdrop-filter: blur(var(--skill-backdrop-blur-lg));
+  -webkit-backdrop-filter: blur(var(--skill-backdrop-blur-lg));
+}
+
+.backdrop-blur-xl {
+  backdrop-filter: blur(var(--skill-backdrop-blur-xl));
+  -webkit-backdrop-filter: blur(var(--skill-backdrop-blur-xl));
+}
+
+.backdrop-blur-2xl {
+  backdrop-filter: blur(var(--skill-backdrop-blur-2xl));
+  -webkit-backdrop-filter: blur(var(--skill-backdrop-blur-2xl));
+}
+
+.backdrop-blur-3xl {
+  backdrop-filter: blur(var(--skill-backdrop-blur-3xl));
+  -webkit-backdrop-filter: blur(var(--skill-backdrop-blur-3xl));
+}
+
+/* ===== 玻璃效果组合（背景 + 模糊）===== */
+
+.glass-white-light {
+  background: var(--skill-glass-white-light);
+  backdrop-filter: blur(var(--skill-backdrop-blur-md));
+  -webkit-backdrop-filter: blur(var(--skill-backdrop-blur-md));
+}
+
+.glass-white-medium {
+  background: var(--skill-glass-white-medium);
+  backdrop-filter: blur(var(--skill-backdrop-blur-lg));
+  -webkit-backdrop-filter: blur(var(--skill-backdrop-blur-lg));
+}
+
+.glass-white-strong {
+  background: var(--skill-glass-white-strong);
+  backdrop-filter: blur(var(--skill-backdrop-blur-xl));
+  -webkit-backdrop-filter: blur(var(--skill-backdrop-blur-xl));
+}
+
+.glass-dark-light {
+  background: var(--skill-glass-dark-light);
+  backdrop-filter: blur(var(--skill-backdrop-blur-md));
+  -webkit-backdrop-filter: blur(var(--skill-backdrop-blur-md));
+}
+
+.glass-dark-medium {
+  background: var(--skill-glass-dark-medium);
+  backdrop-filter: blur(var(--skill-backdrop-blur-lg));
+  -webkit-backdrop-filter: blur(var(--skill-backdrop-blur-lg));
+}
+
+.glass-dark-strong {
+  background: var(--skill-glass-dark-strong);
+  backdrop-filter: blur(var(--skill-backdrop-blur-xl));
+  -webkit-backdrop-filter: blur(var(--skill-backdrop-blur-xl));
+}
+
+/* ===== 复杂阴影系统 ===== */
+
+/* 登录页面风格的阴影 */
+.shadow-card-login {
+  box-shadow: var(--skill-shadow-card-login);
+}
+
+.shadow-card-login-hover {
+  box-shadow: var(--skill-shadow-card-login-hover);
+}
+
+.shadow-button-primary {
+  box-shadow: var(--skill-shadow-button-primary);
+}
+
+.shadow-button-primary-active {
+  box-shadow: var(--skill-shadow-button-primary-active);
+}
+
+/* 发光阴影 */
+.shadow-glow-primary {
+  box-shadow: var(--skill-shadow-glow-primary);
+}
+
+.shadow-glow-success {
+  box-shadow: var(--skill-shadow-glow-success);
+}
+
+.shadow-glow-warning {
+  box-shadow: var(--skill-shadow-glow-warning);
+}
+
+.shadow-glow-error {
+  box-shadow: var(--skill-shadow-glow-error);
+}
+
+/* ===== 渐变背景 ===== */
+
+.bg-gradient-primary {
+  background: var(--skill-gradient-primary);
+}
+
+.bg-gradient-primary-to-r {
+  background: var(--skill-gradient-primary-to-r);
+}
+
+.bg-gradient-primary-hover {
+  background: var(--skill-gradient-primary-hover);
+}
+
+.bg-gradient-secondary {
+  background: var(--skill-gradient-secondary);
+}
+
+.bg-gradient-tertiary {
+  background: var(--skill-gradient-tertiary);
+}
+
+.bg-gradient-light {
+  background: var(--skill-gradient-bg-light);
+}
+
+.bg-gradient-primary-overlay {
+  background: var(--skill-gradient-bg-primary);
+}
+
+/* ===== 大圆角系统 ===== */
+
+.rounded-2xl {
+  border-radius: var(--skill-radius-2xl);
+}
+
+.rounded-3xl {
+  border-radius: var(--skill-radius-3xl);
+}
+
+.rounded-t-2xl {
+  border-top-left-radius: var(--skill-radius-2xl);
+  border-top-right-radius: var(--skill-radius-2xl);
+}
+
+.rounded-b-2xl {
+  border-bottom-left-radius: var(--skill-radius-2xl);
+  border-bottom-right-radius: var(--skill-radius-2xl);
+}
+
+.rounded-l-2xl {
+  border-top-left-radius: var(--skill-radius-2xl);
+  border-bottom-left-radius: var(--skill-radius-2xl);
+}
+
+.rounded-r-2xl {
+  border-top-right-radius: var(--skill-radius-2xl);
+  border-bottom-right-radius: var(--skill-radius-2xl);
+}
+
+/* ===== 交互效果 ===== */
+
+/* Hover 放大效果 */
+.hover-scale-102 {
+  transition: transform var(--skill-duration-normal) var(--skill-ease-out);
+}
+
+.hover-scale-102:hover {
+  transform: scale(1.02);
+}
+
+.hover-scale-105 {
+  transition: transform var(--skill-duration-normal) var(--skill-ease-out);
+}
+
+.hover-scale-105:hover {
+  transform: scale(1.05);
+}
+
+/* Active 缩小效果 */
+.active-scale-98 {
+  transition: transform var(--skill-duration-fast) var(--skill-ease-in-out);
+}
+
+.active-scale-98:active {
+  transform: scale(0.98);
+}
+
+.active-scale-95 {
+  transition: transform var(--skill-duration-fast) var(--skill-ease-in-out);
+}
+
+.active-scale-95:active {
+  transform: scale(0.95);
+}
+
+/* Hover 上移效果 */
+.hover-lift-sm {
+  transition: transform var(--skill-duration-fast) var(--skill-ease-out);
+}
+
+.hover-lift-sm:hover {
+  transform: translateY(-2px);
+}
+
+.hover-lift-md {
+  transition: transform var(--skill-duration-fast) var(--skill-ease-out);
+}
+
+.hover-lift-md:hover {
+  transform: translateY(-4px);
+}
+
+/* ===== 组合效果类 ===== */
+
+/* 登录卡片完整效果 */
+.card-login {
+  background: var(--skill-glass-white-strong);
+  backdrop-filter: blur(var(--skill-backdrop-blur-xl));
+  -webkit-backdrop-filter: blur(var(--skill-backdrop-blur-xl));
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: var(--skill-radius-2xl);
+  box-shadow: var(--skill-shadow-card-login);
+  padding: var(--skill-spacing-xl);
+  transition: all var(--skill-duration-normal) var(--skill-ease-out);
+}
+
+.card-login:hover {
+  box-shadow: var(--skill-shadow-card-login-hover);
+}
+
+/* 渐变按钮完整效果 */
+.button-gradient-primary {
+  background: var(--skill-gradient-primary-to-r);
+  color: var(--skill-gray-0);
+  border: none;
+  border-radius: var(--skill-radius-xl);
+  font-weight: var(--skill-font-medium);
+  box-shadow: var(--skill-shadow-1);
+  position: relative;
+  overflow: hidden;
+  transition: all var(--skill-duration-normal) var(--skill-ease-out);
+  cursor: pointer;
+}
+
+.button-gradient-primary:hover {
+  background: var(--skill-gradient-primary-hover);
+  box-shadow: var(--skill-shadow-button-primary);
+  transform: scale(1.02);
+}
+
+.button-gradient-primary:active {
+  transform: scale(0.98);
+  box-shadow: var(--skill-shadow-button-primary-active);
+}
+
+/* ===== 背景装饰 ===== */
+
+/* 渐变装饰球（用于背景） */
+.decoration-gradient-ball {
+  position: absolute;
+  width: 320px;
+  height: 320px;
+  border-radius: var(--skill-radius-full);
+  filter: blur(60px);
+  opacity: 0.2;
+  pointer-events: none;
+}
+
+.decoration-gradient-ball-primary {
+  background: linear-gradient(135deg, rgba(10, 89, 247, 0.4) 0%, rgba(147, 51, 234, 0.4) 100%);
+}
+
+.decoration-gradient-ball-secondary {
+  background: linear-gradient(135deg, rgba(0, 212, 170, 0.4) 0%, rgba(6, 182, 212, 0.4) 100%);
+}
+
+/* ===== 响应式工具 ===== */
+
+@media (max-width: 768px) {
+  .md\:backdrop-blur-none {
+    backdrop-filter: blur(0);
+    -webkit-backdrop-filter: blur(0);
+  }
+
+  .md\:shadow-none {
+    box-shadow: none;
+  }
+
+  .decoration-gradient-ball {
+    width: 200px;
+    height: 200px;
+  }
+}
+
+@media (max-width: 480px) {
+  .sm\:backdrop-blur-sm {
+    backdrop-filter: blur(var(--skill-backdrop-blur-sm));
+    -webkit-backdrop-filter: blur(var(--skill-backdrop-blur-sm));
+  }
+
+  .sm\:rounded-xl {
+    border-radius: var(--skill-radius-xl);
+  }
+
+  .decoration-gradient-ball {
+    width: 160px;
+    height: 160px;
+  }
+}

@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Skill Input Stepper Demo</title>
+  <script type="module" src="/dist/components/molecules/input-stepper/skill-input-stepper.js"></script>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 2rem;
+      background: #f8fafc;
+    }
+
+    .demo-section {
+      background: white;
+      padding: 2rem;
+      border-radius: 12px;
+      margin-bottom: 2rem;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+
+    .demo-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: #1f2937;
+    }
+
+    .demo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+      margin-top: 1rem;
+    }
+
+    .demo-item {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .demo-label {
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: #6b7280;
+    }
+
+    .events-log {
+      background: #f3f4f6;
+      border: 1px solid #d1d5db;
+      border-radius: 8px;
+      padding: 1rem;
+      font-family: monospace;
+      font-size: 0.875rem;
+      max-height: 200px;
+      overflow-y: auto;
+      white-space: pre-wrap;
+    }
+
+    .controls {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    button {
+      padding: 0.5rem 1rem;
+      background: #3b82f6;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.875rem;
+    }
+
+    button:hover {
+      background: #2563eb;
+    }
+
+    button:disabled {
+      background: #9ca3af;
+      cursor: not-allowed;
+    }
+  </style>
+</head>
+<body>
+  <h1>Skill Input Stepper Component Demo</h1>
+
+  <div class="demo-section">
+    <h2 class="demo-title">Basic Usage</h2>
+    <div class="demo-grid">
+      <div class="demo-item">
+        <span class="demo-label">Basic stepper</span>
+        <skill-input-stepper
+          id="basic"
+          label="数量"
+          value="5"
+          min="0"
+          max="10"
+          step="1"
+        ></skill-input-stepper>
+      </div>
+
+      <div class="demo-item">
+        <span class="demo-label">With precision</span>
+        <skill-input-stepper
+          id="precision"
+          label="价格"
+          value="99.99"
+          min="0"
+          max="1000"
+          step="0.01"
+          precision="2"
+        ></skill-input-stepper>
+      </div>
+
+      <div class="demo-item">
+        <span class="demo-label">With prefix/suffix</span>
+        <skill-input-stepper
+          id="currency"
+          label="金额"
+          value="100"
+          min="0"
+          max="10000"
+          step="10"
+          prefix="¥"
+          suffix="元"
+        ></skill-input-stepper>
+      </div>
+
+      <div class="demo-item">
+        <span class="demo-label">Large size</span>
+        <skill-input-stepper
+          id="large"
+          label="年龄"
+          value="25"
+          min="0"
+          max="120"
+          size="lg"
+        ></skill-input-stepper>
+      </div>
+    </div>
+  </div>
+
+  <div class="demo-section">
+    <h2 class="demo-title">States</h2>
+    <div class="demo-grid">
+      <div class="demo-item">
+        <span class="demo-label">Disabled</span>
+        <skill-input-stepper
+          label="禁用状态"
+          value="5"
+          disabled
+        ></skill-input-stepper>
+      </div>
+
+      <div class="demo-item">
+        <span class="demo-label">Readonly</span>
+        <skill-input-stepper
+          label="只读状态"
+          value="10"
+          readonly
+        ></skill-input-stepper>
+      </div>
+
+      <div class="demo-item">
+        <span class="demo-label">Error state</span>
+        <skill-input-stepper
+          label="错误状态"
+          value="15"
+          error
+          error-message="数值超出范围"
+        ></skill-input-stepper>
+      </div>
+
+      <div class="demo-item">
+        <span class="demo-label">Success state</span>
+        <skill-input-stepper
+          label="成功状态"
+          value="20"
+          success
+          helper-text="数值有效"
+        ></skill-input-stepper>
+      </div>
+    </div>
+  </div>
+
+  <div class="demo-section">
+    <h2 class="demo-title">Variants</h2>
+    <div class="demo-grid">
+      <div class="demo-item">
+        <span class="demo-label">Without buttons</span>
+        <skill-input-stepper
+          label="无按钮模式"
+          value="7"
+          min="0"
+          max="100"
+          show-buttons="false"
+        ></skill-input-stepper>
+      </div>
+
+      <div class="demo-item">
+        <span class="demo-label">Custom step</span>
+        <skill-input-stepper
+          label="步长5"
+          value="20"
+          min="0"
+          max="100"
+          step="5"
+        ></skill-input-stepper>
+      </div>
+
+      <div class="demo-item">
+        <span class="demo-label">Small size</span>
+        <skill-input-stepper
+          label="小尺寸"
+          value="3"
+          min="1"
+          max="5"
+          size="sm"
+        ></skill-input-stepper>
+      </div>
+
+      <div class="demo-item">
+        <span class="demo-label">Required field</span>
+        <skill-input-stepper
+          label="必填项"
+          value="1"
+          min="1"
+          required
+          helper-text="请选择至少1个"
+        ></skill-input-stepper>
+      </div>
+    </div>
+  </div>
+
+  <div class="demo-section">
+    <h2 class="demo-title">Interactive Controls</h2>
+    <div class="demo-item">
+      <span class="demo-label">Controlled stepper</span>
+      <skill-input-stepper
+        id="controlled"
+        label="受控组件"
+        value="0"
+        min="0"
+        max="100"
+        step="1"
+      ></skill-input-stepper>
+    </div>
+
+    <div class="controls">
+      <button onclick="setValue(25)">Set to 25</button>
+      <button onclick="setValue(50)">Set to 50</button>
+      <button onclick="setValue(75)">Set to 75</button>
+      <button onclick="toggleDisabled()">Toggle Disabled</button>
+      <button onclick="resetValue()">Reset</button>
+    </div>
+
+    <h3 style="margin-top: 2rem; margin-bottom: 1rem;">Event Log</h3>
+    <div id="events" class="events-log">Events will appear here...</div>
+  </div>
+
+  <script>
+    let eventLog = '';
+    let controlledStepper = document.getElementById('controlled');
+
+    // Log events for all steppers
+    document.addEventListener('skill-change', (e) => {
+      const targetId = e.target.id || 'unknown';
+      eventLog += `[${targetId}] change: ${JSON.stringify(e.detail)}\n`;
+      updateEventLog();
+    });
+
+    document.addEventListener('skill-input', (e) => {
+      const targetId = e.target.id || 'unknown';
+      eventLog += `[${targetId}] input: ${JSON.stringify(e.detail)}\n`;
+      updateEventLog();
+    });
+
+    document.addEventListener('skill-focus', (e) => {
+      const targetId = e.target.id || 'unknown';
+      eventLog += `[${targetId}] focus\n`;
+      updateEventLog();
+    });
+
+    document.addEventListener('skill-blur', (e) => {
+      const targetId = e.target.id || 'unknown';
+      eventLog += `[${targetId}] blur\n`;
+      updateEventLog();
+    });
+
+    function updateEventLog() {
+      const logElement = document.getElementById('events');
+      logElement.textContent = eventLog;
+      logElement.scrollTop = logElement.scrollHeight;
+    }
+
+    function setValue(value) {
+      controlledStepper.value = value;
+      eventLog += `Programmatic set value to ${value}\n`;
+      updateEventLog();
+    }
+
+    function toggleDisabled() {
+      controlledStepper.disabled = !controlledStepper.disabled;
+      eventLog += `Toggled disabled state to ${controlledStepper.disabled}\n`;
+      updateEventLog();
+    }
+
+    function resetValue() {
+      controlledStepper.reset();
+      eventLog += `Reset controlled stepper\n`;
+      updateEventLog();
+    }
+
+    // Initial log
+    eventLog = 'Demo initialized. Interact with the steppers to see events.\n\n';
+    updateEventLog();
+  </script>
+</body>
+</html>

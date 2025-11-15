@@ -1,0 +1,162 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Skill UI Components - 开发测试</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      padding: 3rem 2rem;
+      color: #1f2937;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 3rem;
+      color: white;
+    }
+
+    .header h1 {
+      font-size: 3rem;
+      font-weight: 800;
+      margin-bottom: 1rem;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .header p {
+      font-size: 1.25rem;
+      opacity: 0.95;
+    }
+
+    .badge {
+      display: inline-block;
+      background: rgba(255, 255, 255, 0.25);
+      backdrop-filter: blur(10px);
+      padding: 0.75rem 1.5rem;
+      border-radius: 100px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-top: 1rem;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      color: white;
+    }
+
+    .info-box {
+      background: white;
+      border-radius: 16px;
+      padding: 2rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.15);
+    }
+
+    .info-box h2 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      color: #1f2937;
+    }
+
+    .info-box p {
+      line-height: 1.6;
+      color: #4b5563;
+      margin-bottom: 0.75rem;
+    }
+
+    .info-box ul {
+      padding-left: 1.5rem;
+      color: #4b5563;
+      line-height: 1.8;
+    }
+
+    .info-box code {
+      background: #f3f4f6;
+      padding: 0.25rem 0.5rem;
+      border-radius: 4px;
+      font-family: 'Monaco', 'Menlo', monospace;
+      font-size: 0.9em;
+      color: #667eea;
+    }
+
+    .test-section {
+      background: white;
+      border-radius: 16px;
+      padding: 2rem;
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.15);
+    }
+
+    .test-section h3 {
+      font-size: 1.25rem;
+      margin-bottom: 1.5rem;
+      color: #1f2937;
+    }
+
+    .demo-area {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      padding: 1.5rem;
+      background: #f9fafb;
+      border-radius: 12px;
+      border: 2px dashed #e5e7eb;
+    }
+
+    .link {
+      display: inline-block;
+      color: #667eea;
+      text-decoration: none;
+      font-weight: 600;
+      margin-top: 0.5rem;
+    }
+
+    .link:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>🎨 Skill UI Components</h1>
+      <p>组件库开发测试页面</p>
+      <span class="badge">开发环境 · Dev Mode</span>
+    </div>
+
+    <div class="info-box">
+      <h2>📋 说明</h2>
+      <p>这是一个用于开发和测试组件库的简单页面。</p>
+      <p>如果你想查看完整的组件文档和示例，请访问文档站点：</p>
+      <ul>
+        <li>运行文档站点：<code>cd ../skill-docs && npm run dev</code></li>
+        <li>文档站点包含完整的侧边栏导航和所有组件的详细说明</li>
+      </ul>
+    </div>
+
+    <div class="test-section">
+      <h3>快速测试区域</h3>
+      <p style="margin-bottom: 1rem; color: #6b7280;">你可以在这里快速测试组件</p>
+      <div class="demo-area">
+        <skill-button variant="primary">Primary Button</skill-button>
+        <skill-button variant="secondary">Secondary</skill-button>
+        <skill-button variant="success">Success</skill-button>
+        <skill-button variant="danger">Danger</skill-button>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="/src/index.ts"></script>
+</body>
+</html>

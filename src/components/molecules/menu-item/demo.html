@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Skill Menu Item Demo</title>
+  <script type="module" src="/dist/components/molecules/menu-item/skill-menu-item.js"></script>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 2rem;
+      background: #f8fafc;
+    }
+
+    .demo-section {
+      background: white;
+      padding: 2rem;
+      border-radius: 12px;
+      margin-bottom: 2rem;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+
+    .demo-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: #1f2937;
+    }
+
+    .demo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-top: 1rem;
+    }
+
+    .menu-demo {
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      overflow: hidden;
+      background: white;
+      max-width: 300px;
+    }
+
+    .menu-header {
+      padding: 0.75rem 1rem;
+      background: #f9fafb;
+      border-bottom: 1px solid #e5e7eb;
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: #6b7280;
+    }
+
+    .menu-item {
+      /* Reset default styles */
+      background: none;
+      border: none;
+      padding: 0;
+      margin: 0;
+      text-align: left;
+      width: 100%;
+    }
+
+    .controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin: 1rem 0;
+      padding: 1rem;
+      background: #f3f4f6;
+      border-radius: 8px;
+    }
+
+    .control-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    label {
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: #374151;
+    }
+
+    input, select, textarea {
+      padding: 0.5rem;
+      border: 1px solid #d1d5db;
+      border-radius: 6px;
+      font-size: 0.875rem;
+    }
+
+    button {
+      padding: 0.5rem 1rem;
+      background: #3b82f6;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.875rem;
+      transition: background-color 0.2s;
+    }
+
+    button:hover {
+      background: #2563eb;
+    }
+
+    button.secondary {
+      background: #6b7280;
+    }
+
+    button.secondary:hover {
+      background: #4b5563;
+    }
+
+    button.danger {
+      background: #ef4444;
+    }
+
+    button.danger:hover {
+      background: #dc2626;
+    }
+
+    .events-log {
+      background: #1f2937;
+      color: #e5e7eb;
+      border: 1px solid #374151;
+      border-radius: 8px;
+      padding: 1rem;
+      font-family: monospace;
+      font-size: 0.875rem;
+      max-height: 300px;
+      overflow-y: auto;
+      white-space: pre-wrap;
+      margin-top: 1rem;
+    }
+
+    .submenu-demo {
+      position: relative;
+    }
+
+    .submenu-demo .menu-item {
+      position: relative;
+    }
+
+    .highlight {
+      background: #fef3c7 !important;
+      border: 1px solid #f59e0b !important;
+    }
+
+    .tabs {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+      border-bottom: 1px solid #e5e7eb;
+    }
+
+    .tab {
+      padding: 0.5rem 1rem;
+      background: none;
+      border: none;
+      border-bottom: 2px solid transparent;
+      cursor: pointer;
+      font-size: 0.875rem;
+      color: #6b7280;
+    }
+
+    .tab.active {
+      color: #3b82f6;
+      border-bottom-color: #3b82f6;
+    }
+
+    .tab-content {
+      display: none;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    .demo-menu {
+      background: white;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      padding: 0.5rem 0;
+      max-width: 350px;
+    }
+
+    .badge-demo {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-top: 1rem;
+    }
+
+    .badge {
+      background: #ef4444;
+      color: white;
+      font-size: 0.75rem;
+      font-weight: 500;
+      padding: 2px 6px;
+      border-radius: 9999px;
+      min-width: 20px;
+      text-align: center;
+    }
+
+    .badge.new {
+      background: #10b981;
+    }
+
+    .badge.beta {
+      background: #f59e0b;
+    }
+
+    /* Dark mode preview */
+    .dark-preview {
+      background: #1f2937;
+      color: #f9fafb;
+      padding: 1rem;
+      border-radius: 8px;
+      margin-top: 1rem;
+    }
+
+    .dark-preview .demo-menu {
+      background: #374151;
+      border-color: #4b5563;
+    }
+  </style>
+</head>
+<body>
+  <h1>Skill Menu Item Component Demo</h1>
+
+  <!-- Basic Menu Items -->
+  <div class="demo-section">
+    <h2 class="demo-title">Basic Menu Items</h2>
+    <div class="demo-grid">
+      <div>
+        <h3 style="margin-bottom: 1rem; font-size: 1rem;">Simple Menu</h3>
+        <div class="demo-menu">
+          <skill-menu-item title="新建文件" icon="plus" shortcut="Ctrl+N"></skill-menu-item>
+          <skill-menu-item title="打开文件" icon="folder" shortcut="Ctrl+O"></skill-menu-item>
+          <skill-menu-item title="保存文档" icon="save" shortcut="Ctrl+S" badge="已修改"></skill-menu-item>
+          <skill-menu-item title="另存为" icon="copy" shortcut="Ctrl+Shift+S"></skill-menu-item>
+          <skill-menu-item show-separator></skill-menu-item>
+          <skill-menu-item title="页面设置" icon="settings"></skill-menu-item>
+          <skill-menu-item title="退出" icon="trash" variant="danger"></skill-menu-item>
+        </div>
+      </div>
+
+      <div>
+        <h3 style="margin-bottom: 1rem; font-size: 1rem;">With Descriptions</h3>
+        <div class="demo-menu">
+          <skill-menu-item
+            title="新建项目"
+            description="创建一个新的项目文件夹"
+            icon="plus"
+            shortcut="Ctrl+Alt+N">
+          </skill-menu-item>
+          <skill-menu-item
+            title="打开最近"
+            description="查看并打开最近使用过的文件"
+            icon="folder">
+          </skill-menu-item>
+          <skill-menu-item
+            title="同步设置"
+            description="同步你的偏好设置到云端"
+            icon="upload"
+            badge="云端">
+          </skill-menu-item>
+          <skill-menu-item show-separator></skill-menu-item>
+          <skill-menu-item
+            title="帮助文档"
+            description="查看使用帮助和快捷键说明"
+            icon="file">
+          </skill-menu-item>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Selection Modes -->
+  <div class="demo-section">
+    <h2 class="demo-title">Selection Modes</h2>
+    <div class="demo-grid">
+      <div>
+        <h3 style="margin-bottom: 1rem; font-size: 1rem;">Checkbox Mode</h3>
+        <div class="demo-menu">
+          <skill-menu-item
+            title="显示隐藏文件"
+            description="在文件浏览器中显示隐藏文件"
+            mode="checkbox"
+            icon="eye">
+          </skill-menu-item>
+          <skill-menu-item
+            title="自动保存"
+            description="每5分钟自动保存文档"
+            mode="checkbox"
+            checked
+            icon="save">
+          </skill-menu-item>
+          <skill-menu-item
+            title="拼写检查"
+            description="实时检查文本中的拼写错误"
+            mode="checkbox"
+            icon="edit">
+          </skill-menu-item>
+          <skill-menu-item
+            title="语法高亮"
+            description="为代码文件启用语法高亮"
+            mode="checkbox"
+            checked
+            icon="file">
+          </skill-menu-item>
+        </div>
+      </div>
+
+      <div>
+        <h3 style="margin-bottom: 1rem; font-size: 1rem;">Radio Mode</h3>
+        <div class="demo-menu">
+          <skill-menu-item
+            title="浅色主题"
+            description="使用浅色配色方案"
+            mode="radio"
+            name="theme"
+            checked
+            icon="settings">
+          </skill-menu-item>
+          <skill-menu-item
+            title="深色主题"
+            description="使用深色配色方案"
+            mode="radio"
+            name="theme"
+            icon="settings">
+          </skill-menu-item>
+          <skill-menu-item
+            title="跟随系统"
+            description="自动跟随系统主题设置"
+            mode="radio"
+            name="theme"
+            icon="settings">
+          </skill-menu-item>
+          <skill-menu-item show-separator></skill-menu-item>
+          <skill-menu-item
+            title="紧凑视图"
+            description="显示更多的内容项"
+            mode="radio"
+            name="view"
+            icon="file">
+          </skill-menu-item>
+          <skill-menu-item
+            title="舒适视图"
+            description="标准的显示密度"
+            mode="radio"
+            name="view"
+            checked
+            icon="file">
+          </skill-menu-item>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- States and Variants -->
+  <div class="demo-section">
+    <h2 class="demo-title">States and Variants</h2>
+    <div class="demo-grid">
+      <div>
+        <h3 style="margin-bottom: 1rem; font-size: 1rem;">Different States</h3>
+        <div class="demo-menu">
+          <skill-menu-item title="正常状态" icon="file"></skill-menu-item>
+          <skill-menu-item title="激活状态" icon="file" active></skill-menu-item>
+          <skill-menu-item title="选中状态" icon="file" selected></skill-menu-item>
+          <skill-menu-item title="禁用状态" icon="file" disabled></skill-menu-item>
+          <skill-menu-item title="加载状态" icon="upload" loading></skill-menu-item>
+          <skill-menu-item title="警告状态" icon="settings" variant="warning"></skill-menu-item>
+          <skill-menu-item title="危险操作" icon="trash" variant="danger"></skill-menu-item>
+        </div>
+      </div>
+
+      <div>
+        <h3 style="margin-bottom: 1rem; font-size: 1rem;">Size Variants</h3>
+        <div class="demo-menu" style="padding: 0.75rem 0;">
+          <div style="margin-bottom: 0.5rem; font-size: 0.875rem; color: #6b7280;">Small Size</div>
+          <skill-menu-item title="小尺寸菜单" icon="file" size="sm"></skill-menu-item>
+
+          <div style="margin: 1rem 0 0.5rem 0; font-size: 0.875rem; color: #6b7280;">Medium Size</div>
+          <skill-menu-item title="标准尺寸" icon="file" size="md"></skill-menu-item>
+
+          <div style="margin: 1rem 0 0.5rem 0; font-size: 0.875rem; color: #6b7280;">Large Size</div>
+          <skill-menu-item title="大尺寸菜单" icon="file" size="lg"></skill-menu-item>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Interactive Demo -->
+  <div class="demo-section">
+    <h2 class="demo-title">Interactive Demo</h2>
+
+    <div class="tabs">
+      <button class="tab active" onclick="switchTab('interactive')">交互测试</button>
+      <button class="tab" onclick="switchTab('customization')">自定义选项</button>
+      <button class="tab" onclick="switchTab('submenu')">子菜单</button>
+    </div>
+
+    <div id="interactive-tab" class="tab-content active">
+      <div class="controls">
+        <div class="control-group">
+          <label>菜单标题</label>
+          <input type="text" id="menuTitle" value="动态菜单项" />
+        </div>
+
+        <div class="control-group">
+          <label>图标</label>
+          <select id="menuIcon">
+            <option value="">无图标</option>
+            <option value="plus">加号</option>
+            <option value="save">保存</option>
+            <option value="folder">文件夹</option>
+            <option value="settings">设置</option>
+            <option value="trash">删除</option>
+          </select>
+        </div>
+
+        <div class="control-group">
+          <label>快捷键</label>
+          <input type="text" id="menuShortcut" placeholder="Ctrl+S" />
+        </div>
+
+        <div class="control-group">
+          <label>徽章</label>
+          <input type="text" id="menuBadge" placeholder="新" />
+        </div>
+
+        <div class="control-group">
+          <label>状态</label>
+          <select id="menuState">
+            <option value="normal">正常</option>
+            <option value="active">激活</option>
+            <option value="selected">选中</option>
+            <option value="disabled">禁用</option>
+            <option value="loading">加载</option>
+          </select>
+        </div>
+
+        <div class="control-group">
+          <label>变体</label>
+          <select id="menuVariant">
+            <option value="default">默认</option>
+            <option value="danger">危险</option>
+            <option value="warning">警告</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="demo-menu">
+        <skill-menu-item
+          id="dynamicMenuItem"
+          title="动态菜单项"
+          icon="file">
+        </skill-menu-item>
+
+        <skill-menu-item show-separator></skill-menu-item>
+
+        <skill-menu-item
+          title="复选框示例"
+          mode="checkbox"
+          icon="eye"
+          id="checkboxExample">
+        </skill-menu-item>
+
+        <skill-menu-item
+          title="单选框示例"
+          mode="radio"
+          name="example"
+          icon="folder"
+          id="radioExample">
+        </skill-menu-item>
+      </div>
+    </div>
+
+    <div id="customization-tab" class="tab-content">
+      <div class="controls">
+        <div class="control-group">
+          <label>选择模式</label>
+          <select id="selectionMode">
+            <option value="none">无选择</option>
+            <option value="checkbox">复选框</option>
+            <option value="radio">单选框</option>
+          </select>
+        </div>
+
+        <div class="control-group">
+          <label>组件尺寸</label>
+          <select id="componentSize">
+            <option value="sm">小</option>
+            <option value="md" selected>中</option>
+            <option value="lg">大</option>
+          </select>
+        </div>
+
+        <div class="control-group">
+          <label>自定义操作按钮</label>
+          <button onclick="toggleCustomAction()">切换自定义操作</button>
+        </div>
+
+        <div class="control-group">
+          <label>键盘绑定</label>
+          <input type="text" id="keybinding" placeholder="Alt+M" />
+        </div>
+      </div>
+
+      <div class="demo-menu">
+        <skill-menu-item
+          id="customMenuItem"
+          title="可自定义菜单项"
+          description="这是一个可以自定义的菜单项"
+          icon="settings"
+          shortcut="Ctrl+Alt+S">
+          <div slot="action" id="customAction" style="display: none;">
+            <button style="padding: 2px; background: none; border: none; cursor: pointer;">
+              ⚙️
+            </button>
+          </div>
+        </skill-menu-item>
+
+        <skill-menu-item title="纯文本菜单项"></skill-menu-item>
+        <skill-menu-item title="带分隔线的菜单项" show-separator></skill-menu-item>
+        <skill-menu-item title="另一个菜单项" icon="file"></skill-menu-item>
+      </div>
+    </div>
+
+    <div id="submenu-tab" class="tab-content">
+      <div class="demo-menu submenu-demo">
+        <skill-menu-item
+          title="文件操作"
+          icon="folder"
+          has-submenu
+          id="fileSubmenu">
+          <div slot="submenu" class="demo-menu" style="position: absolute; left: 100%; top: 0; margin-left: 8px; display: none;">
+            <skill-menu-item title="新建文件" icon="plus"></skill-menu-item>
+            <skill-menu-item title="打开文件" icon="folder"></skill-menu-item>
+            <skill-menu-item title="保存文件" icon="save"></skill-menu-item>
+            <skill-menu-item show-separator></skill-menu-item>
+            <skill-menu-item title="导入" icon="download"></skill-menu-item>
+            <skill-menu-item title="导出" icon="upload"></skill-menu-item>
+          </div>
+        </skill-menu-item>
+
+        <skill-menu-item
+          title="编辑操作"
+          icon="edit"
+          has-submenu
+          id="editSubmenu">
+          <div slot="submenu" class="demo-menu" style="position: absolute; left: 100%; top: 0; margin-left: 8px; display: none;">
+            <skill-menu-item title="撤销" shortcut="Ctrl+Z"></skill-menu-item>
+            <skill-menu-item title="重做" shortcut="Ctrl+Y"></skill-menu-item>
+            <skill-menu-item show-separator></skill-menu-item>
+            <skill-menu-item title="剪切" shortcut="Ctrl+X"></skill-menu-item>
+            <skill-menu-item title="复制" shortcut="Ctrl+C"></skill-menu-item>
+            <skill-menu-item title="粘贴" shortcut="Ctrl+V"></skill-menu-item>
+          </div>
+        </skill-menu-item>
+
+        <skill-menu-item title="帮助" icon="file"></skill-menu-item>
+      </div>
+
+      <div class="controls" style="margin-top: 1rem;">
+        <button onclick="toggleAllSubmenus()">切换所有子菜单</button>
+        <button onclick="closeAllSubmenus()">关闭所有子菜单</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Event Log -->
+  <div class="demo-section">
+    <h2 class="demo-title">Event Log</h2>
+    <div id="events" class="events-log">Events will appear here...</div>
+  </div>
+
+  <script>
+    let eventLog = '';
+
+    // Setup event listeners
+    document.addEventListener('skill-click', (e) => {
+      eventLog += `[${new Date().toLocaleTimeString()}] Click: ${e.target.title || e.target.textContent?.trim()}\n`;
+      eventLog += `  Value: ${e.detail.value}\n`;
+      eventLog += `  Checked: ${e.detail.checked}\n`;
+      eventLog += `  Selected: ${e.detail.selected}\n\n`;
+      updateEventLog();
+    });
+
+    document.addEventListener('skill-select', (e) => {
+      eventLog += `[${new Date().toLocaleTimeString()}] Select: ${e.target.title || e.target.textContent?.trim()}\n`;
+      eventLog += `  Value: ${e.detail.value}\n`;
+      eventLog += `  Checked: ${e.detail.checked}\n`;
+      eventLog += `  Selected: ${e.detail.selected}\n\n`;
+      updateEventLog();
+    });
+
+    document.addEventListener('skill-action', (e) => {
+      eventLog += `[${new Date().toLocaleTimeString()}] Action: ${e.target.title || e.target.textContent?.trim()}\n`;
+      eventLog += `  Value: ${e.detail.value}\n\n`;
+      updateEventLog();
+    });
+
+    document.addEventListener('skill-submenu-toggle', (e) => {
+      eventLog += `[${new Date().toLocaleTimeString()}] Submenu toggle: ${e.target.title || e.target.textContent?.trim()}\n`;
+      eventLog += `  Open: ${e.detail.open}\n`;
+      eventLog += `  Value: ${e.detail.value}\n\n`;
+      updateEventLog();
+    });
+
+    function updateEventLog() {
+      const logElement = document.getElementById('events');
+      logElement.textContent = eventLog;
+      logElement.scrollTop = logElement.scrollHeight;
+    }
+
+    // Tab switching
+    function switchTab(tabName) {
+      document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
+      document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+
+      event.target.classList.add('active');
+      document.getElementById(`${tabName}-tab`).classList.add('active');
+    }
+
+    // Interactive demo functions
+    function updateDynamicMenuItem() {
+      const item = document.getElementById('dynamicMenuItem');
+      const title = document.getElementById('menuTitle').value;
+      const icon = document.getElementById('menuIcon').value;
+      const shortcut = document.getElementById('menuShortcut').value;
+      const badge = document.getElementById('menuBadge').value;
+      const state = document.getElementById('menuState').value;
+      const variant = document.getElementById('menuVariant').value;
+
+      item.title = title;
+      item.icon = icon;
+      item.shortcut = shortcut;
+      item.badge = badge;
+      item.variant = variant;
+
+      // Reset states
+      item.active = false;
+      item.selected = false;
+      item.disabled = false;
+      item.loading = false;
+
+      // Apply selected state
+      switch (state) {
+        case 'active':
+          item.active = true;
+          break;
+        case 'selected':
+          item.selected = true;
+          break;
+        case 'disabled':
+          item.disabled = true;
+          break;
+        case 'loading':
+          item.loading = true;
+          break;
+      }
+    }
+
+    // Add event listeners for interactive controls
+    document.getElementById('menuTitle')?.addEventListener('input', updateDynamicMenuItem);
+    document.getElementById('menuIcon')?.addEventListener('change', updateDynamicMenuItem);
+    document.getElementById('menuShortcut')?.addEventListener('input', updateDynamicMenuItem);
+    document.getElementById('menuBadge')?.addEventListener('input', updateDynamicMenuItem);
+    document.getElementById('menuState')?.addEventListener('change', updateDynamicMenuItem);
+    document.getElementById('menuVariant')?.addEventListener('change', updateDynamicMenuItem);
+
+    // Customization functions
+    function toggleCustomAction() {
+      const customAction = document.getElementById('customAction');
+      customAction.style.display = customAction.style.display === 'none' ? 'block' : 'none';
+    }
+
+    // Update custom menu item
+    document.getElementById('selectionMode')?.addEventListener('change', (e) => {
+      const item = document.getElementById('customMenuItem');
+      item.mode = e.target.value;
+    });
+
+    document.getElementById('componentSize')?.addEventListener('change', (e) => {
+      const item = document.getElementById('customMenuItem');
+      item.size = e.target.value;
+    });
+
+    document.getElementById('keybinding')?.addEventListener('input', (e) => {
+      const item = document.getElementById('customMenuItem');
+      item.keybinding = e.target.value;
+    });
+
+    // Submenu functions
+    function toggleAllSubmenus() {
+      const fileSubmenu = document.getElementById('fileSubmenu');
+      const editSubmenu = document.getElementById('editSubmenu');
+
+      const isOpen = fileSubmenu.submenuOpen || editSubmenu.submenuOpen;
+
+      fileSubmenu.submenuOpen = !isOpen;
+      editSubmenu.submenuOpen = !isOpen;
+
+      // Toggle submenu visibility manually for demo
+      const fileSubmenuContent = fileSubmenu.shadowRoot?.querySelector('.menu-item__submenu');
+      const editSubmenuContent = editSubmenu.shadowRoot?.querySelector('.menu-item__submenu');
+
+      if (fileSubmenuContent) {
+        fileSubmenuContent.style.display = fileSubmenu.submenuOpen ? 'block' : 'none';
+      }
+      if (editSubmenuContent) {
+        editSubmenuContent.style.display = editSubmenu.submenuOpen ? 'block' : 'none';
+      }
+    }
+
+    function closeAllSubmenus() {
+      const fileSubmenu = document.getElementById('fileSubmenu');
+      const editSubmenu = document.getElementById('editSubmenu');
+
+      fileSubmenu.submenuOpen = false;
+      editSubmenu.submenuOpen = false;
+
+      const fileSubmenuContent = fileSubmenu.shadowRoot?.querySelector('.menu-item__submenu');
+      const editSubmenuContent = editSubmenu.shadowRoot?.querySelector('.menu-item__submenu');
+
+      if (fileSubmenuContent) {
+        fileSubmenuContent.style.display = 'none';
+      }
+      if (editSubmenuContent) {
+        editSubmenuContent.style.display = 'none';
+      }
+    }
+
+    // Initialize event log
+    eventLog = `Demo initialized at ${new Date().toLocaleTimeString()}\n\n`;
+    eventLog += `Try interacting with the menu items to see events.\n`;
+    eventLog += `• Click on menu items\n`;
+    eventLog += `• Toggle checkbox/radio modes\n`;
+    eventLog += `• Hover over submenu items\n`;
+    eventLog += `• Use keyboard navigation\n\n`;
+    updateEventLog();
+
+    // Add keyboard shortcuts demo
+    document.addEventListener('keydown', (e) => {
+      // Ctrl+Alt+S to focus dynamic menu item
+      if (e.ctrlKey && e.altKey && e.key === 's') {
+        e.preventDefault();
+        document.getElementById('dynamicMenuItem')?.focus();
+        eventLog += `[${new Date().toLocaleTimeString()}] Keyboard shortcut triggered: Ctrl+Alt+S\n\n`;
+        updateEventLog();
+      }
+    });
+  </script>
+</body>
+</html>

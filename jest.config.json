@@ -1,0 +1,44 @@
+{
+  "preset": "ts-jest",
+  "testEnvironment": "jsdom",
+  "roots": [
+    "<rootDir>/src",
+    "<rootDir>/test"
+  ],
+  "testMatch": [
+    "**/__tests__/**/*.+(ts|tsx|js)",
+    "**/*.(test|spec).+(ts|tsx|js)"
+  ],
+  "transform": {
+    "^.+\\.(ts|tsx)$": ["ts-jest", {
+      "tsconfig": {
+        "esModuleInterop": true,
+        "allowSyntheticDefaultImports": true
+      }
+    }]
+  },
+  "collectCoverageFrom": [
+    "src/**/*.{ts,tsx}",
+    "!src/**/*.d.ts",
+    "!src/styles/**",
+    "!src/types/**"
+  ],
+  "coverageDirectory": "coverage",
+  "coverageReporters": [
+    "text",
+    "lcov",
+    "html"
+  ],
+  "setupFilesAfterEnv": [
+    "<rootDir>/test/setup.ts"
+  ],
+  "transformIgnorePatterns": [
+    "node_modules/(?!(lit|@lit|@open-wc|lit-html|@lit-labs|@lit/reactive-element))"
+  ],
+  "moduleNameMapper": {
+    "^@/(.*)$": "<rootDir>/src/$1",
+    "^@styles/(.*)$": "<rootDir>/src/styles/$1",
+    "^@components/(.*)$": "<rootDir>/src/components/$1"
+  },
+  "extensionsToTreatAsEsm": [".ts", ".tsx"]
+}

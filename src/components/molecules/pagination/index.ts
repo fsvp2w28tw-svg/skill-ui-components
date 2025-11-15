@@ -1,0 +1,1 @@
+export { SkillPagination } from './skill-pagination';

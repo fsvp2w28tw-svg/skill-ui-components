@@ -1,0 +1,82 @@
+/**
+ * Skill UI Components - Global Styles Entry Point
+ * 全局样式入口文件（仅包含 CSS 变量和动画关键帧）
+ *
+ * 注意：这个文件只包含可以穿透 Shadow DOM 的全局样式
+ * - CSS 变量定义
+ * - @keyframes 动画关键帧
+ *
+ * 不包含 CSS 类，因为它们无法在 Web Components 的 Shadow DOM 中使用
+ */
+
+/* ===== CSS 变量定义 ===== */
+/* 导入统一的设计令牌 */
+@import './design-tokens.css';
+
+/* ===== 动画关键帧定义 ===== */
+/* 导入动画关键帧（@keyframes 可以穿透 Shadow DOM） */
+@import './skill-animations.css';
+
+/* ===== 工具类 ===== */
+/* 导入实用工具类（用于快速应用样式） */
+@import './skill-utility-classes.css';
+
+/**
+ * 全局基础样式重置
+ * 这些样式用于示例页面、文档等非 Web Components 的部分
+ */
+
+/* 确保所有元素使用 border-box */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* 移除默认 margin */
+* {
+  margin: 0;
+}
+
+/* 改善文本渲染 */
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  font-family: var(--skill-font-sans);
+}
+
+/* 改善媒体元素的默认行为 */
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+/* 移除表单元素的默认样式 */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+/* 改善文本溢出处理 */
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+
+/* 可访问性：为焦点状态添加默认样式 */
+:focus-visible {
+  outline: 2px solid var(--skill-primary-500);
+  outline-offset: 2px;
+}

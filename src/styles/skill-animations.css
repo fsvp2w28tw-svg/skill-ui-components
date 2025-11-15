@@ -1,0 +1,751 @@
+/* Skill设计规范 - 动画效果 */
+
+:root {
+  /* Skill动画系统 */
+  --animation-skill-duration-instant: 100ms;
+  --animation-skill-duration-fast: 200ms;
+  --animation-skill-duration-normal: 300ms;
+  --animation-skill-duration-slow: 500ms;
+  --animation-skill-duration-slower: 800ms;
+
+  /* Skill缓动函数 */
+  --animation-skill-ease-in: cubic-bezier(0.4, 0, 1, 1);
+  --animation-skill-ease-out: cubic-bezier(0, 0, 0.2, 1);
+  --animation-skill-ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --animation-skill-ease-spring: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  --animation-skill-ease-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+/* ===== 入场动画 ===== */
+
+/* 淡入 */
+@keyframes fadeIn-skill {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.animate-fadeIn-skill {
+  animation: fadeIn-skill var(--animation-skill-duration-normal) var(--animation-skill-ease-out);
+}
+
+.animate-fadeIn-skill-slow {
+  animation: fadeIn-skill var(--animation-skill-duration-slow) var(--animation-skill-ease-out);
+}
+
+/* 上滑淡入 */
+@keyframes fadeInUp-skill {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeInUp-skill {
+  animation: fadeInUp-skill var(--animation-skill-duration-normal) var(--animation-skill-ease-out);
+}
+
+/* 下滑淡入 */
+@keyframes fadeInDown-skill {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeInDown-skill {
+  animation: fadeInDown-skill var(--animation-skill-duration-normal) var(--animation-skill-ease-out);
+}
+
+/* 左滑淡入 */
+@keyframes fadeInLeft-skill {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.animate-fadeInLeft-skill {
+  animation: fadeInLeft-skill var(--animation-skill-duration-normal) var(--animation-skill-ease-out);
+}
+
+/* 右滑淡入 */
+@keyframes fadeInRight-skill {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.animate-fadeInRight-skill {
+  animation: fadeInRight-skill var(--animation-skill-duration-normal) var(--animation-skill-ease-out);
+}
+
+/* 缩放淡入 */
+@keyframes zoomIn-skill {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-zoomIn-skill {
+  animation: zoomIn-skill var(--animation-skill-duration-normal) var(--animation-skill-ease-spring);
+}
+
+/* 旋转淡入 */
+@keyframes rotateIn-skill {
+  from {
+    opacity: 0;
+    transform: rotate(-180deg) scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: rotate(0) scale(1);
+  }
+}
+
+.animate-rotateIn-skill {
+  animation: rotateIn-skill var(--animation-skill-duration-slow) var(--animation-skill-ease-spring);
+}
+
+/* ===== 退场动画 ===== */
+
+/* 淡出 */
+@keyframes fadeOut-skill {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+.animate-fadeOut-skill {
+  animation: fadeOut-skill var(--animation-skill-duration-normal) var(--animation-skill-ease-in);
+}
+
+/* 上滑淡出 */
+@keyframes fadeOutUp-skill {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+}
+
+.animate-fadeOutUp-skill {
+  animation: fadeOutUp-skill var(--animation-skill-duration-normal) var(--animation-skill-ease-in);
+}
+
+/* 下滑淡出 */
+@keyframes fadeOutDown-skill {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+}
+
+.animate-fadeOutDown-skill {
+  animation: fadeOutDown-skill var(--animation-skill-duration-normal) var(--animation-skill-ease-in);
+}
+
+/* 缩放淡出 */
+@keyframes zoomOut-skill {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+}
+
+.animate-zoomOut-skill {
+  animation: zoomOut-skill var(--animation-skill-duration-normal) var(--animation-skill-ease-in);
+}
+
+/* ===== 强调动画 ===== */
+
+/* 脉冲 */
+@keyframes pulse-skill {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.animate-pulse-skill {
+  animation: pulse-skill var(--animation-skill-duration-slow) ease-in-out infinite;
+}
+
+/* 心跳 */
+@keyframes heartbeat-skill {
+  0%, 100% {
+    transform: scale(1);
+  }
+  14% {
+    transform: scale(1.3);
+  }
+  28% {
+    transform: scale(1);
+  }
+  42% {
+    transform: scale(1.3);
+  }
+  70% {
+    transform: scale(1);
+  }
+}
+
+.animate-heartbeat-skill {
+  animation: heartbeat-skill var(--animation-skill-duration-slower) ease-in-out infinite;
+}
+
+/* 弹跳 */
+@keyframes bounce-skill {
+  0%, 20%, 53%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40%, 43% {
+    transform: translateY(-30px);
+  }
+  70% {
+    transform: translateY(-15px);
+  }
+  90% {
+    transform: translateY(-4px);
+  }
+}
+
+.animate-bounce-skill {
+  animation: bounce-skill var(--animation-skill-duration-slower) ease-in-out;
+}
+
+.animate-bounce-skill-infinite {
+  animation: bounce-skill 2s ease-in-out infinite;
+}
+
+/* 摇摆 */
+@keyframes shake-skill {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  10%, 30%, 50%, 70%, 90% {
+    transform: translateX(-10px);
+  }
+  20%, 40%, 60%, 80% {
+    transform: translateX(10px);
+  }
+}
+
+.animate-shake-skill {
+  animation: shake-skill var(--animation-skill-duration-slow) ease-in-out;
+}
+
+/* 晃动 */
+@keyframes wobble-skill {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  15% {
+    transform: translateX(-25px) rotate(-5deg);
+  }
+  30% {
+    transform: translateX(20px) rotate(3deg);
+  }
+  45% {
+    transform: translateX(-15px) rotate(-3deg);
+  }
+  60% {
+    transform: translateX(10px) rotate(2deg);
+  }
+  75% {
+    transform: translateX(-5px) rotate(-1deg);
+  }
+}
+
+.animate-wobble-skill {
+  animation: wobble-skill var(--animation-skill-duration-slow) ease-in-out;
+}
+
+/* 摆动 */
+@keyframes swing-skill {
+  20%, 40%, 60%, 80%, 100% {
+    transform-origin: top center;
+  }
+  20% {
+    transform: rotate(15deg);
+  }
+  40% {
+    transform: rotate(-10deg);
+  }
+  60% {
+    transform: rotate(5deg);
+  }
+  80% {
+    transform: rotate(-5deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+.animate-swing-skill {
+  animation: swing-skill var(--animation-skill-duration-slower) ease-in-out;
+  transform-origin: top center;
+}
+
+/* 闪烁 */
+@keyframes flash-skill {
+  0%, 50%, 100% {
+    opacity: 1;
+  }
+  25%, 75% {
+    opacity: 0;
+  }
+}
+
+.animate-flash-skill {
+  animation: flash-skill var(--animation-skill-duration-slow) ease-in-out infinite;
+}
+
+/* 发光 */
+@keyframes glow-skill {
+  0%, 100% {
+    box-shadow: 0 0 5px rgba(10, 89, 247, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(10, 89, 247, 0.8);
+  }
+}
+
+.animate-glow-skill {
+  animation: glow-skill var(--animation-skill-duration-slow) ease-in-out infinite;
+}
+
+/* ===== 加载动画 ===== */
+
+/* 旋转加载 */
+@keyframes spin-skill {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin-skill {
+  animation: spin-skill var(--animation-skill-duration-slow) linear infinite;
+}
+
+.animate-spin-skill-reverse {
+  animation: spin-skill var(--animation-skill-duration-slow) linear infinite reverse;
+}
+
+/* 仪表加载 */
+@keyframes dash-skill {
+  0% {
+    stroke-dasharray: 1, 150;
+    stroke-dashoffset: 0;
+  }
+  50% {
+    stroke-dasharray: 90, 150;
+    stroke-dashoffset: -35;
+  }
+  100% {
+    stroke-dasharray: 90, 150;
+    stroke-dashoffset: -124;
+  }
+}
+
+/* 环形加载 */
+@keyframes ring-skill {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-ring-skill {
+  animation: ring-skill var(--animation-skill-duration-slower) linear infinite;
+}
+
+/* ===== 交互动画 ===== */
+
+/* 悬停上升 */
+.hover-lift-skill {
+  transition: transform var(--animation-skill-duration-fast) var(--animation-skill-ease-out);
+}
+
+.hover-lift-skill:hover {
+  transform: translateY(-2px);
+}
+
+/* 悬停缩放 */
+.hover-scale-skill {
+  transition: transform var(--animation-skill-duration-fast) var(--animation-skill-ease-out);
+}
+
+.hover-scale-skill:hover {
+  transform: scale(1.05);
+}
+
+.hover-scale-skill-sm:hover {
+  transform: scale(1.02);
+}
+
+.hover-scale-skill-lg:hover {
+  transform: scale(1.1);
+}
+
+/* 悬停旋转 */
+.hover-rotate-skill {
+  transition: transform var(--animation-skill-duration-normal) var(--animation-skill-ease-out);
+}
+
+.hover-rotate-skill:hover {
+  transform: rotate(5deg);
+}
+
+/* 点击反馈 */
+.click-feedback-skill {
+  transition: transform var(--animation-skill-duration-instant) var(--animation-skill-ease-in);
+}
+
+.click-feedback-skill:active {
+  transform: scale(0.98);
+}
+
+/* 波纹效果 */
+@keyframes ripple-skill {
+  from {
+    transform: scale(0);
+    opacity: 1;
+  }
+  to {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+.ripple-skill {
+  position: relative;
+  overflow: hidden;
+}
+
+.ripple-skill::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+  transform: translate(-50%, -50%);
+}
+
+.ripple-skill:active::after {
+  width: 300px;
+  height: 300px;
+  animation: ripple-skill var(--animation-skill-duration-slow) var(--animation-skill-ease-out);
+}
+
+/* ===== 列表动画 ===== */
+
+/* 交错进入 */
+@keyframes staggerIn-skill {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.stagger-skill > * {
+  animation: staggerIn-skill var(--animation-skill-duration-normal) var(--animation-skill-ease-out) backwards;
+}
+
+.stagger-skill > *:nth-child(1) { animation-delay: 0ms; }
+.stagger-skill > *:nth-child(2) { animation-delay: 50ms; }
+.stagger-skill > *:nth-child(3) { animation-delay: 100ms; }
+.stagger-skill > *:nth-child(4) { animation-delay: 150ms; }
+.stagger-skill > *:nth-child(5) { animation-delay: 200ms; }
+.stagger-skill > *:nth-child(6) { animation-delay: 250ms; }
+.stagger-skill > *:nth-child(7) { animation-delay: 300ms; }
+.stagger-skill > *:nth-child(8) { animation-delay: 350ms; }
+.stagger-skill > *:nth-child(9) { animation-delay: 400ms; }
+.stagger-skill > *:nth-child(10) { animation-delay: 450ms; }
+
+/* ===== 页面过渡动画 ===== */
+
+/* 页面切换 */
+.page-transition-skill-enter {
+  opacity: 0;
+  transform: translateX(100px);
+}
+
+.page-transition-skill-enter-active {
+  opacity: 1;
+  transform: translateX(0);
+  transition: all var(--animation-skill-duration-normal) var(--animation-skill-ease-out);
+}
+
+.page-transition-skill-exit {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.page-transition-skill-exit-active {
+  opacity: 0;
+  transform: translateX(-100px);
+  transition: all var(--animation-skill-duration-normal) var(--animation-skill-ease-in);
+}
+
+/* ===== 延迟动画工具类 ===== */
+
+.animation-delay-skill-50 { animation-delay: 50ms; }
+.animation-delay-skill-100 { animation-delay: 100ms; }
+.animation-delay-skill-150 { animation-delay: 150ms; }
+.animation-delay-skill-200 { animation-delay: 200ms; }
+.animation-delay-skill-300 { animation-delay: 300ms; }
+.animation-delay-skill-500 { animation-delay: 500ms; }
+.animation-delay-skill-700 { animation-delay: 700ms; }
+.animation-delay-skill-1000 { animation-delay: 1000ms; }
+
+/* ===== 动画状态 ===== */
+
+.animation-paused {
+  animation-play-state: paused !important;
+}
+
+.animation-running {
+  animation-play-state: running !important;
+}
+
+/* ===== 减动效支持 ===== */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* 补充关键帧定义 - 为了确保所有动画都有对应的关键帧 */
+@keyframes slideInUp-skill {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInDown-skill {
+  from {
+    opacity: 0;
+    transform: translateY(-40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInLeft-skill {
+  from {
+    opacity: 0;
+    transform: translateX(-40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight-skill {
+  from {
+    opacity: 0;
+    transform: translateX(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes bounceIn-skill {
+  0% {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+  70% {
+    transform: scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes wiggle-skill {
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(3deg);
+  }
+  75% {
+    transform: rotate(-3deg);
+  }
+}
+
+@keyframes gradientShift-skill {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* ===== 扫光动画（Shimmer Effect）===== */
+
+@keyframes shimmer-skill {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.animate-shimmer-skill {
+  position: relative;
+  overflow: hidden;
+}
+
+.animate-shimmer-skill::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--skill-gradient-shimmer);
+  animation: shimmer-skill 2s ease-in-out infinite;
+}
+
+/* 悬停时触发的扫光效果 */
+.shimmer-on-hover-skill {
+  position: relative;
+  overflow: hidden;
+}
+
+.shimmer-on-hover-skill::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--skill-gradient-shimmer);
+  transform: translateX(-100%);
+  transition: transform var(--skill-duration-normal) var(--skill-ease-out);
+}
+
+.shimmer-on-hover-skill:hover::before {
+  transform: translateX(100%);
+  transition: transform 0.7s var(--skill-ease-out);
+}
+
+/* ===== 缩放动画增强 ===== */
+
+/* 微小缩放（按钮按下效果）*/
+@keyframes scaleDown-skill {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0.98);
+  }
+}
+
+.animate-scale-down-skill {
+  animation: scaleDown-skill var(--skill-duration-fast) var(--skill-ease-in-out);
+}
+
+/* hover 放大效果 */
+.hover-scale-102-skill {
+  transition: transform var(--skill-duration-normal) var(--skill-ease-out);
+}
+
+.hover-scale-102-skill:hover {
+  transform: scale(1.02);
+}
+
+/* ===== 背景渐变动画 ===== */
+
+@keyframes bgGradientShift-skill {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animate-bg-gradient-skill {
+  background-size: 200% 200%;
+  animation: bgGradientShift-skill 3s ease infinite;
+}

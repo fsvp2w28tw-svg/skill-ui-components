@@ -1,0 +1,75 @@
+{
+  "name": "@skill/ui-components",
+  "version": "1.0.0",
+  "description": "Skill UI Web Components - 基于 Web Components 的跨框架 UI 组件库",
+  "type": "module",
+  "main": "./dist/skill-ui.umd.js",
+  "module": "./dist/skill-ui.es.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/skill-ui.es.js",
+      "require": "./dist/skill-ui.umd.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "files": [
+    "dist",
+    "custom-elements.json",
+    "README.md"
+  ],
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build && npm run analyze",
+    "build:watch": "vite build --watch",
+    "preview": "vite preview",
+    "analyze": "cem analyze --litelement --globs \"src/components/**/*.ts\" --outdir .",
+    "clean": "rm -rf dist",
+    "type-check": "tsc --noEmit",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "test:ui": "jest --watchAll=false",
+    "prepublishOnly": "npm run clean && npm run build && npm run test",
+    "local-link": "npm pack && npm install ./skill-ui-components-1.0.0.tgz --save"
+  },
+  "keywords": [
+    "web-components",
+    "custom-elements",
+    "lit",
+    "atomic-design",
+    "design-system",
+    "ui-framework",
+    "vue",
+    "angular",
+    "svelte",
+    "react"
+  ],
+  "author": "Skill Team",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/skill/ui-components.git"
+  },
+  "dependencies": {
+    "lit": "^3.1.0"
+  },
+  "devDependencies": {
+    "@custom-elements-manifest/analyzer": "^0.9.0",
+    "@open-wc/testing": "^4.0.0",
+    "@open-wc/testing-helpers": "^3.0.1",
+    "@types/jest": "^30.0.0",
+    "@types/node": "^20.10.0",
+    "jest": "^30.2.0",
+    "jest-environment-jsdom": "^30.2.0",
+    "terser": "^5.44.1",
+    "ts-jest": "^29.4.5",
+    "typescript": "^5.9.3",
+    "vite": "^5.0.0",
+    "vite-plugin-dts": "^3.7.0"
+  },
+  "customElements": "custom-elements.json",
+  "publishConfig": {
+    "access": "public"
+  }
+}

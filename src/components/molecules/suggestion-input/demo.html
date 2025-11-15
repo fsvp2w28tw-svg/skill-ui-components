@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Skill Suggestion Input - Demo</title>
+  <script type="module" src="/dist/components/index.js"></script>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      margin: 0;
+      padding: 32px;
+      background-color: #f5f5f5;
+    }
+
+    .demo-container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .demo-section {
+      background: white;
+      padding: 24px;
+      margin-bottom: 24px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .demo-title {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 16px;
+      color: #333;
+    }
+
+    .demo-description {
+      color: #666;
+      margin-bottom: 20px;
+      line-height: 1.5;
+    }
+
+    .demo-item {
+      margin-bottom: 20px;
+    }
+
+    .demo-label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 500;
+      color: #333;
+    }
+
+    .demo-output {
+      margin-top: 16px;
+      padding: 12px;
+      background-color: #f8f9fa;
+      border-radius: 4px;
+      font-family: monospace;
+      font-size: 14px;
+      white-space: pre-wrap;
+    }
+
+    .tags-container {
+      margin-top: 20px;
+    }
+
+    .button-group {
+      display: flex;
+      gap: 12px;
+      margin-top: 16px;
+      flex-wrap: wrap;
+    }
+
+    button {
+      padding: 8px 16px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      background: white;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    button:hover {
+      background-color: #f5f5f5;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    @media (max-width: 600px) {
+      .grid-2 {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="demo-container">
+    <h1>Skill Suggestion Input 组件演示</h1>
+
+    <!-- 基础用法 -->
+    <div class="demo-section">
+      <h2 class="demo-title">基础用法</h2>
+      <p class="demo-description">
+        基础的建议输入框，支持基本的搜索和建议功能
+      </p>
+
+      <div class="demo-item">
+        <label class="demo-label">水果搜索</label>
+        <skill-suggestion-input
+          id="basic-demo"
+          placeholder="搜索水果..."
+          show-clear>
+        </skill-suggestion-input>
+      </div>
+
+      <div class="demo-output" id="basic-output">选择或输入的内容会显示在这里</div>
+    </div>
+
+    <!-- 带描述的建议 -->
+    <div class="demo-section">
+      <h2 class="demo-title">带描述和图标的建议</h2>
+      <p class="demo-description">
+        显示详细的描述信息和图标，提供更丰富的用户体验
+      </p>
+
+      <div class="demo-item">
+        <label class="demo-label">用户搜索</label>
+        <skill-suggestion-input
+          id="rich-demo"
+          placeholder="搜索用户..."
+          show-description
+          show-icon
+          show-clear>
+        </skill-suggestion-input>
+      </div>
+
+      <div class="demo-output" id="rich-output">用户选择会显示在这里</div>
+    </div>
+
+    <!-- 多选模式 -->
+    <div class="demo-section">
+      <h2 class="demo-title">多选模式</h2>
+      <p class="demo-description">
+        支持选择多个标签，可以随时删除已选中的标签
+      </p>
+
+      <div class="demo-item">
+        <label class="demo-label">技能标签选择</label>
+        <skill-suggestion-input
+          id="multi-demo"
+          placeholder="选择技能标签..."
+          multi-select
+          show-clear
+          show-description>
+        </skill-suggestion-input>
+      </div>
+
+      <div class="demo-output" id="multi-output">已选择的技能标签会显示在这里</div>
+    </div>
+
+    <!-- 异步搜索 -->
+    <div class="demo-section">
+      <h2 class="demo-title">异步搜索</h2>
+      <p class="demo-description">
+        模拟异步搜索请求，支持加载状态显示
+      </p>
+
+      <div class="demo-item">
+        <label class="demo-label">商品搜索 (异步)</label>
+        <skill-suggestion-input
+          id="async-demo"
+          placeholder="搜索商品..."
+          async-search
+          min-query-length="2"
+          show-clear
+          loading-text="正在搜索商品...">
+        </skill-suggestion-input>
+      </div>
+
+      <div class="demo-output" id="async-output">搜索结果会显示在这里</div>
+    </div>
+
+    <!-- 分组显示 -->
+    <div class="demo-section">
+      <h2 class="demo-title">分组显示</h2>
+      <p class="demo-description">
+        按分类显示建议项，便于用户快速找到目标选项
+      </p>
+
+      <div class="demo-item">
+        <label class="demo-label">设置搜索</label>
+        <skill-suggestion-input
+          id="group-demo"
+          placeholder="搜索设置项..."
+          show-description
+          show-clear>
+        </skill-suggestion-input>
+      </div>
+
+      <div class="demo-output" id="group-output">设置选择会显示在这里</div>
+    </div>
+
+    <!-- 不同状态 -->
+    <div class="demo-section">
+      <h2 class="demo-title">不同状态</h2>
+      <p class="demo-description">
+        展示组件的禁用、只读等不同状态
+      </p>
+
+      <div class="grid-2">
+        <div class="demo-item">
+          <label class="demo-label">禁用状态</label>
+          <skill-suggestion-input
+            id="disabled-demo"
+            placeholder="禁用的输入框"
+            disabled
+            value="不可编辑">
+          </skill-suggestion-input>
+        </div>
+
+        <div class="demo-item">
+          <label class="demo-label">只读状态</label>
+          <skill-suggestion-input
+            id="readonly-demo"
+            placeholder="只读的输入框"
+            readonly
+            value="只读内容">
+          </skill-suggestion-input>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // 示例数据
+    const fruits = [
+      'Apple', 'Banana', 'Orange', 'Grape', 'Strawberry',
+      'Watermelon', 'Pineapple', 'Mango', 'Cherry', 'Kiwi'
+    ];
+
+    const users = [
+      {
+        label: '张三',
+        value: 'user1',
+        description: '前端开发工程师',
+        icon: 'user'
+      },
+      {
+        label: '李四',
+        value: 'user2',
+        description: '后端开发工程师',
+        icon: 'user'
+      },
+      {
+        label: '王五',
+        value: 'user3',
+        description: '产品经理',
+        icon: 'user'
+      },
+      {
+        label: '赵六',
+        value: 'user4',
+        description: 'UI设计师',
+        icon: 'user'
+      },
+      {
+        label: '钱七',
+        value: 'user5',
+        description: '测试工程师',
+        icon: 'user'
+      }
+    ];
+
+    const skills = [
+      { label: 'JavaScript', value: 'js', description: '现代编程语言' },
+      { label: 'TypeScript', value: 'ts', description: '类型安全的JavaScript' },
+      { label: 'React', value: 'react', description: '流行的前端框架' },
+      { label: 'Vue', value: 'vue', description: '渐进式前端框架' },
+      { label: 'Angular', value: 'angular', description: '企业级前端框架' },
+      { label: 'Node.js', value: 'nodejs', description: '服务端JavaScript' },
+      { label: 'Python', value: 'python', description: '通用编程语言' },
+      { label: 'Docker', value: 'docker', description: '容器化平台' },
+      { label: 'Kubernetes', value: 'k8s', description: '容器编排平台' },
+      { label: 'Git', value: 'git', description: '版本控制系统' }
+    ];
+
+    const settings = [
+      {
+        label: '个人资料',
+        value: 'profile',
+        description: '更新个人基本信息',
+        category: '账户设置'
+      },
+      {
+        label: '密码修改',
+        value: 'password',
+        description: '更改登录密码',
+        category: '账户设置'
+      },
+      {
+        label: '邮件通知',
+        value: 'email-notifications',
+        description: '配置邮件提醒设置',
+        category: '通知设置'
+      },
+      {
+        label: '主题外观',
+        value: 'theme',
+        description: '选择界面主题',
+        category: '外观设置'
+      },
+      {
+        label: '语言设置',
+        value: 'language',
+        description: '选择界面语言',
+        category: '外观设置'
+      },
+      {
+        label: '隐私设置',
+        value: 'privacy',
+        description: '管理数据隐私选项',
+        category: '安全设置'
+      },
+      {
+        label: '两步验证',
+        value: '2fa',
+        description: '设置额外的安全验证',
+        category: '安全设置'
+      }
+    ];
+
+    // 初始化组件
+    document.addEventListener('DOMContentLoaded', () => {
+      // 基础演示
+      const basicDemo = document.getElementById('basic-demo');
+      const basicOutput = document.getElementById('basic-output');
+
+      basicDemo.suggestions = fruits.map(fruit => ({ label: fruit, value: fruit }));
+
+      basicDemo.addEventListener('skill-suggestion-select', (e) => {
+        basicOutput.textContent = `选择了: ${e.detail.item.label}`;
+      });
+
+      basicDemo.addEventListener('skill-input', (e) => {
+        basicOutput.textContent = `输入了: ${e.detail.value}`;
+      });
+
+      // 带描述和图标的演示
+      const richDemo = document.getElementById('rich-demo');
+      const richOutput = document.getElementById('rich-output');
+
+      richDemo.suggestions = users;
+
+      richDemo.addEventListener('skill-suggestion-select', (e) => {
+        richOutput.textContent = `选择了用户: ${e.detail.item.label} (${e.detail.item.description})`;
+      });
+
+      // 多选演示
+      const multiDemo = document.getElementById('multi-demo');
+      const multiOutput = document.getElementById('multi-output');
+
+      multiDemo.suggestions = skills;
+
+      multiDemo.addEventListener('skill-suggestion-select', (e) => {
+        const selectedLabels = e.detail.selectedValues.map(value => {
+          const item = skills.find(s => s.value === value);
+          return item ? item.label : value;
+        });
+        multiOutput.textContent = `已选择的技能 (${e.detail.selectedValues.length}): ${selectedLabels.join(', ')}`;
+      });
+
+      // 异步搜索演示
+      const asyncDemo = document.getElementById('async-demo');
+      const asyncOutput = document.getElementById('async-output');
+
+      const products = [
+        'iPhone 15', 'MacBook Pro', 'iPad Air', 'Apple Watch', 'AirPods Pro',
+        'Samsung Galaxy', 'Dell XPS', 'ThinkPad X1', 'Surface Pro', 'Pixel 8'
+      ];
+
+      asyncDemo.addEventListener('skill-search', async (e) => {
+        const query = e.detail.query;
+        asyncDemo.loading = true;
+
+        // 模拟异步搜索
+        setTimeout(() => {
+          const results = products
+            .filter(product => product.toLowerCase().includes(query.toLowerCase()))
+            .map(product => ({ label: product, value: product.toLowerCase().replace(/\s+/g, '-') }));
+
+          asyncDemo.suggestions = results;
+          asyncDemo.loading = false;
+        }, 1000);
+      });
+
+      asyncDemo.addEventListener('skill-suggestion-select', (e) => {
+        asyncOutput.textContent = `选择了产品: ${e.detail.item.label}`;
+      });
+
+      // 分组演示
+      const groupDemo = document.getElementById('group-demo');
+      const groupOutput = document.getElementById('group-output');
+
+      groupDemo.suggestions = settings;
+
+      groupDemo.addEventListener('skill-suggestion-select', (e) => {
+        groupOutput.textContent = `选择了设置: ${e.detail.item.label} (${e.detail.item.category})`;
+      });
+    });
+  </script>
+</body>
+</html>
