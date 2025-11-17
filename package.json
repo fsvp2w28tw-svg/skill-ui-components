@@ -31,7 +31,8 @@
     "test:coverage": "jest --coverage",
     "test:ui": "jest --watchAll=false",
     "prepublishOnly": "npm run clean && npm run build && npm run test",
-    "local-link": "npm pack && npm install ./skill-ui-components-1.0.0.tgz --save"
+    "local-link": "npm pack && npm install ./skill-ui-components-1.0.0.tgz --save",
+    "demo": "python3 -m http.server 3001"
   },
   "keywords": [
     "web-components",
@@ -52,6 +53,8 @@
     "url": "https://github.com/skill/ui-components.git"
   },
   "dependencies": {
+    "@types/d3": "^7.4.3",
+    "d3": "^7.9.0",
     "lit": "^3.1.0"
   },
   "devDependencies": {

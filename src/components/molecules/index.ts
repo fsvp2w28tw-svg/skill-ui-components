@@ -37,6 +37,9 @@ export * from './sidebar';
 export * from './rating';
 export * from './anchor';
 
+// Chart Components
+export * from './charts';
+
 // 未来会添加更多组件
 // export * from './card-action';
 // export * from './list-item';

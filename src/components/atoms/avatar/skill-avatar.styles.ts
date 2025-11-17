@@ -20,7 +20,7 @@ export const avatarStyles = css`
     font-family: var(--skill-font-sans, 'Inter', system-ui, sans-serif);
     font-weight: var(--skill-font-medium, 500);
     user-select: none;
-    overflow: hidden;
+    overflow: visible;
     flex-shrink: 0;
   }
 
@@ -99,46 +99,49 @@ export const avatarStyles = css`
     display: block;
     border: 2px solid var(--skill-gray-0, #ffffff);
     border-radius: var(--skill-radius-full, 9999px);
+    z-index: 10;
   }
 
   .skill-avatar--xs .skill-avatar__status {
-    bottom: 0;
-    right: 0;
+    bottom: -1px;
+    right: -1px;
     width: 0.5rem;
     height: 0.5rem;
+    border-width: 1.5px;
   }
 
   .skill-avatar--sm .skill-avatar__status {
-    bottom: 0;
-    right: 0;
+    bottom: -1px;
+    right: -1px;
     width: 0.625rem;
     height: 0.625rem;
+    border-width: 1.5px;
   }
 
   .skill-avatar--md .skill-avatar__status {
-    bottom: 0;
-    right: 0;
+    bottom: -1px;
+    right: -1px;
     width: 0.75rem;
     height: 0.75rem;
   }
 
   .skill-avatar--lg .skill-avatar__status {
-    bottom: 0.25rem;
-    right: 0.25rem;
+    bottom: 0.125rem;
+    right: 0.125rem;
     width: 0.875rem;
     height: 0.875rem;
   }
 
   .skill-avatar--xl .skill-avatar__status {
-    bottom: 0.25rem;
-    right: 0.25rem;
+    bottom: 0.125rem;
+    right: 0.125rem;
     width: 1rem;
     height: 1rem;
   }
 
   .skill-avatar--2xl .skill-avatar__status {
-    bottom: 0.5rem;
-    right: 0.5rem;
+    bottom: 0.25rem;
+    right: 0.25rem;
     width: 1.25rem;
     height: 1.25rem;
   }
@@ -196,6 +199,40 @@ export const avatarStyles = css`
       width: 4.5rem;
       height: 4.5rem;
       font-size: 1.375rem;
+    }
+
+    /* 移动端状态指示器调整 */
+    .skill-avatar--xs .skill-avatar__status {
+      width: 0.5625rem;
+      height: 0.5625rem;
+      bottom: -1px;
+      right: -1px;
+      border-width: 1.5px;
+    }
+
+    .skill-avatar--sm .skill-avatar__status {
+      width: 0.6875rem;
+      height: 0.6875rem;
+    }
+
+    .skill-avatar--md .skill-avatar__status {
+      width: 0.8125rem;
+      height: 0.8125rem;
+    }
+
+    .skill-avatar--lg .skill-avatar__status {
+      width: 0.9375rem;
+      height: 0.9375rem;
+    }
+
+    .skill-avatar--xl .skill-avatar__status {
+      width: 1.0625rem;
+      height: 1.0625rem;
+    }
+
+    .skill-avatar--2xl .skill-avatar__status {
+      width: 1.3125rem;
+      height: 1.3125rem;
     }
   }
 `;

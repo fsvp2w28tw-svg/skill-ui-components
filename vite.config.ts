@@ -19,7 +19,7 @@ export default defineConfig({
       fileName: (format) => `skill-ui.${format}.js`,
     },
     rollupOptions: {
-      external: ['lit'],
+      // 移除 external: ['lit'] 以便将 lit 打包到输出中
       output: {
         assetFileNames: (assetInfo) => {
           if (assetInfo.name === 'style.css') {

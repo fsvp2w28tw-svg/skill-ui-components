@@ -50,6 +50,11 @@ import './components/atoms/skill-notification';
 // Molecules
 import './components/molecules/dropdown';
 
+// Charts
+import './components/molecules/charts/skill-chart-line';
+import './components/molecules/charts/skill-chart-bar';
+import './components/molecules/charts/skill-chart-pie';
+
 // 未来添加更多组件时在这里导入
 // import './components/atoms/toast';
 // etc.
