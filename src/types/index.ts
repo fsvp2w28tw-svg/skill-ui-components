@@ -17,7 +17,7 @@ export type Variant =
   | 'soft'
   | 'gradient'
   | 'link';
-export type Shape = 'square' | 'rounded' | 'pill' | 'circle';
+export type Shape = 'square' | 'rounded' | 'pill' | 'circle' | 'capsule' | 'floating';
 export type Status = 'success' | 'error' | 'warning' | 'info';
 export type Position = 'top' | 'right' | 'bottom' | 'left';
 export type Alignment = 'start' | 'center' | 'end';

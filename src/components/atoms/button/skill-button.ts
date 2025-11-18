@@ -87,7 +87,7 @@ export class SkillButton extends LitElement {
   /**
    * 3D effect
    */
-  @property({ type: Boolean, reflect: true, attribute: '3d' })
+  @property({ type: Boolean, reflect: true, attribute: 'three-d' })
   threeDimensional = false;
 
   /**

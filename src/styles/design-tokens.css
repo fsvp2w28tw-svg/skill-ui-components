@@ -94,9 +94,9 @@
   --skill-line-height-normal: 1.5;
   --skill-line-height-loose: 1.75;
 
-  /* 字间距 */
-  --skill-letter-spacing-tight: -0.5px;
-  --skill-letter-spacing-normal: 0;
+  /* 字间距 - 鸿蒙设计规范 */
+  --skill-letter-spacing-tight: -0.1px;    /* 鸿蒙规范：从-0.5px更新为-0.1px */
+  --skill-letter-spacing-normal: 0.025px;  /* 鸿蒙规范：从0更新为0.025px */
   --skill-letter-spacing-loose: 0.5px;
 
   /* ===== 间距系统 ===== */
@@ -119,41 +119,46 @@
   --skill-layout-padding: 16px;
   --skill-layout-section: 64px;
 
-  /* ===== 圆角系统 ===== */
+  /* ===== 圆角系统 - 鸿蒙设计规范 ===== */
 
   --skill-radius-none: 0;
   --skill-radius-xs: 2px;
-  --skill-radius-sm: 4px;
-  --skill-radius-base: 4px;
-  --skill-radius-md: 6px;
-  --skill-radius-lg: 8px;
-  --skill-radius-xl: 12px;
-  --skill-radius-2xl: 16px;
+  --skill-radius-sm: 6px;    /* 鸿蒙规范：从4px更新为6px */
+  --skill-radius-base: 6px;  /* 鸿蒙规范：从4px更新为6px */
+  --skill-radius-md: 8px;    /* 鸿蒙规范：从6px更新为8px */
+  --skill-radius-lg: 12px;   /* 鸿蒙规范：从8px更新为12px */
+  --skill-radius-xl: 16px;   /* 鸿蒙规范：从12px更新为16px */
+  --skill-radius-2xl: 20px;  /* 鸿蒙规范：用于胶囊按钮 */
   --skill-radius-3xl: 24px;
   --skill-radius-full: 9999px;
 
-  /* ===== 阴影系统 ===== */
+  /* ===== 阴影系统 - 鸿蒙设计规范 ===== */
 
   --skill-shadow-none: none;
 
-  /* 阴影等级 */
-  --skill-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
-  --skill-shadow-1: 0 2px 4px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.04);
-  --skill-shadow-2: 0 4px 8px rgba(0, 0, 0, 0.12), 0 2px 4px rgba(0, 0, 0, 0.08);
+  /* 阴影等级 - 鸿蒙风格更自然的阴影 */
+  --skill-shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.08);
+  --skill-shadow-1: 0 2px 4px rgba(0, 0, 0, 0.1);   /* 鸿蒙规范：按钮默认状态 */
+  --skill-shadow-2: 0 4px 8px rgba(0, 0, 0, 0.15);  /* 鸿蒙规范：按钮悬停状态 */
   --skill-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-  --skill-shadow-3: 0 8px 16px rgba(0, 0, 0, 0.16), 0 4px 8px rgba(0, 0, 0, 0.12);
+  --skill-shadow-3: 0 8px 12px rgba(0, 0, 0, 0.12), 0 4px 6px rgba(0, 0, 0, 0.08); /* 鸿蒙规范：悬停增强状态 */
   --skill-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-  --skill-shadow-4: 0 16px 32px rgba(0, 0, 0, 0.20), 0 8px 16px rgba(0, 0, 0, 0.16);
+  --skill-shadow-4: 0 16px 32px rgba(0, 0, 0, 0.18), 0 8px 16px rgba(0, 0, 0, 0.12);
   --skill-shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-  --skill-shadow-5: 0 32px 64px rgba(0, 0, 0, 0.24), 0 16px 32px rgba(0, 0, 0, 0.20);
+  --skill-shadow-5: 0 32px 64px rgba(0, 0, 0, 0.20), 0 16px 32px rgba(0, 0, 0, 0.16);
   --skill-shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
 
-  /* 特殊阴影 */
+  /* 特殊阴影 - 鸿蒙风格发光效果 */
   --skill-shadow-inset: inset 0 1px 3px rgba(0, 0, 0, 0.1);
-  --skill-shadow-glow-primary: 0 0 20px rgba(10, 89, 247, 0.3);
-  --skill-shadow-glow-success: 0 0 20px rgba(0, 212, 170, 0.3);
-  --skill-shadow-glow-warning: 0 0 20px rgba(255, 180, 0, 0.3);
-  --skill-shadow-glow-error: 0 0 20px rgba(250, 42, 45, 0.3);
+  --skill-shadow-glow-primary: 0 0 16px rgba(10, 89, 247, 0.25);  /* 鸿蒙规范：更柔和的发光 */
+  --skill-shadow-glow-success: 0 0 16px rgba(0, 212, 170, 0.25);
+  --skill-shadow-glow-warning: 0 0 16px rgba(255, 180, 0, 0.25);
+  --skill-shadow-glow-error: 0 0 16px rgba(250, 42, 45, 0.25);
+
+  /* 鸿蒙风格按钮阴影系统 */
+  --skill-shadow-button-harmony-resting: 0 2px 4px rgba(0, 0, 0, 0.1);   /* 默认状态 */
+  --skill-shadow-button-harmony-hover: 0 4px 8px rgba(0, 0, 0, 0.15);    /* 悬停状态 */
+  --skill-shadow-button-harmony-pressed: 0 1px 2px rgba(0, 0, 0, 0.1);   /* 按下状态 */
 
   /* 登录页面风格的复杂阴影 */
   --skill-shadow-card-login: 0 20px 40px -12px rgba(0, 0, 0, 0.15), 0 8px 16px -8px rgba(0, 0, 0, 0.1);
@@ -220,7 +225,7 @@
   --skill-ease-spring: cubic-bezier(0.68, -0.55, 0.265, 1.55);
   --skill-ease-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
 
-  /* ===== Z-Index 层级 ===== */
+  /* ===== Z-Index 层级 - 鸿蒙设计规范 ===== */
 
   --skill-z-hide: -1;
   --skill-z-base: 0;
@@ -234,11 +239,20 @@
   --skill-z-toast: 1700;
   --skill-z-tooltip: 1800;
 
-  /* ===== 组件尺寸系统 ===== */
+  /* 按钮层级 - 鸿蒙设计规范 */
+  --skill-z-button: 1;             /* 普通按钮，低于avatar状态指示器 */
+  --skill-z-button-floating: 15;   /* 浮动按钮，高于avatar状态指示器 */
+  --skill-z-button-focus: 5;       /* 按钮焦点状态 */
+
+  /* Badge 徽章层级 */
+  --skill-z-badge: 10;             /* 徽章默认层级，高于普通按钮但低于浮动按钮 */
+  --skill-z-badge-focus: 12;       /* 徽章焦点状态层级 */
+
+  /* ===== 组件尺寸系统 - 鸿蒙设计规范 ===== */
 
   --skill-component-height-xs: 24px;
   --skill-component-height-sm: 32px;
-  --skill-component-height-md: 40px;
+  --skill-component-height-md: 40px;    /* 鸿蒙规范：主要按钮默认高度 */
   --skill-component-height-lg: 48px;
   --skill-component-height-xl: 56px;
   --skill-component-height-2xl: 64px;
@@ -249,6 +263,12 @@
   --skill-component-width-lg: 200px;
   --skill-component-width-xl: 240px;
   --skill-component-width-full: 100%;
+
+  /* 鸿蒙设计规范特有的按钮尺寸 */
+  --skill-button-capsule-padding-horizontal: 24px;    /* 胶囊按钮水平内边距 */
+  --skill-button-min-touch-target: 44px;               /* 最小触摸目标 */
+  --skill-button-icon-spacing: 8px;                     /* 图标与文字间距 */
+  --skill-button-floating-size: 56px;                   /* 浮动按钮标准尺寸 */
 
   /* ===== 断点系统 ===== */
 

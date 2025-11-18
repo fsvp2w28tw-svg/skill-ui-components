@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Skill Button 交互式 Demo</title>
+  <!-- 设计令牌CSS - 包含所有CSS变量 -->
+  <link rel="stylesheet" href="/src/styles/design-tokens.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      padding: 2rem;
+      color: #1f2937;
+    }
+
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 2rem;
+      color: white;
+    }
+
+    .header h1 {
+      font-size: 2.5rem;
+      font-weight: 800;
+      margin-bottom: 0.5rem;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .header p {
+      font-size: 1.1rem;
+      opacity: 0.95;
+    }
+
+    .demo-wrapper {
+      background: white;
+      border-radius: 16px;
+      padding: 2rem;
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.15);
+      margin-bottom: 2rem;
+    }
+
+    .demo-title {
+      font-size: 1.5rem;
+      margin-bottom: 1.5rem;
+      color: #1f2937;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .panel {
+      background: #f9fafb;
+      padding: 1.5rem;
+      border-radius: 12px;
+      border: 1px solid #e5e7eb;
+    }
+
+    .panel h4 {
+      font-size: 1.1rem;
+      margin-bottom: 1rem;
+      color: #374151;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .form-group {
+      margin-bottom: 1rem;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-size: 0.9rem;
+      color: #6b7280;
+      font-weight: 500;
+    }
+
+    .form-group input,
+    .form-group select {
+      width: 100%;
+      padding: 0.5rem;
+      border: 1px solid #d1d5db;
+      border-radius: 6px;
+      font-size: 0.9rem;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus {
+      outline: none;
+      border-color: #667eea;
+      box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+    }
+
+    .checkbox-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.5rem;
+    }
+
+    .checkbox-label {
+      display: flex;
+      align-items: center;
+      font-size: 0.9rem;
+      color: #6b7280;
+      cursor: pointer;
+    }
+
+    .checkbox-label input {
+      margin-right: 0.5rem;
+      width: auto;
+    }
+
+    .preview-area {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 3rem 1rem;
+      background: white;
+      border-radius: 8px;
+      border: 2px dashed #e5e7eb;
+      margin-bottom: 1rem;
+      min-height: 200px;
+    }
+
+    .event-log {
+      background: white;
+      padding: 1rem;
+      border-radius: 6px;
+      border: 1px solid #e5e7eb;
+      font-size: 0.8rem;
+    }
+
+    .event-log h5 {
+      font-size: 0.9rem;
+      margin-bottom: 0.5rem;
+      color: #374151;
+    }
+
+    .event-item {
+      padding: 0.25rem 0;
+      border-bottom: 1px solid #f3f4f6;
+      color: #6b7280;
+    }
+
+    .event-item:last-child {
+      border-bottom: none;
+    }
+
+    .event-type {
+      font-weight: 600;
+      color: #059669;
+    }
+
+    .code-section {
+      background: #f9fafb;
+      padding: 1.5rem;
+      border-radius: 12px;
+      border: 1px solid #e5e7eb;
+      margin-bottom: 2rem;
+    }
+
+    .code-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+
+    .code-header h4 {
+      font-size: 1.1rem;
+      color: #374151;
+      margin: 0;
+    }
+
+    .btn {
+      padding: 0.5rem 1rem;
+      background-color: #667eea;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      transition: background-color 0.2s;
+    }
+
+    .btn:hover {
+      background-color: #5a67d8;
+    }
+
+    .code-container {
+      background: #1f2937;
+      color: #f9fafb;
+      padding: 1rem;
+      border-radius: 6px;
+      font-family: 'Monaco', 'Menlo', monospace;
+      font-size: 0.9rem;
+      overflow-x: auto;
+      position: relative;
+    }
+
+    .code-container.hidden {
+      display: none;
+    }
+
+    .copy-btn {
+      position: absolute;
+      top: 0.5rem;
+      right: 0.5rem;
+      padding: 0.25rem 0.5rem;
+      background-color: #374151;
+      color: #f9fafb;
+      border: none;
+      border-radius: 4px;
+      font-size: 0.8rem;
+      cursor: pointer;
+    }
+
+    .copy-btn:hover {
+      background-color: #4b5563;
+    }
+
+    .presets-section {
+      background: #f9fafb;
+      padding: 1.5rem;
+      border-radius: 12px;
+      border: 1px solid #e5e7eb;
+    }
+
+    .presets-grid {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .preset-btn {
+      padding: 0.5rem 1rem;
+      background-color: white;
+      border: 1px solid #d1d5db;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      color: #4b5563;
+      transition: all 0.2s;
+    }
+
+    .preset-btn:hover {
+      border-color: #667eea;
+      color: #667eea;
+      background-color: #f3f4f6;
+    }
+
+    .empty-state {
+      font-size: 0.8rem;
+      color: #9ca3af;
+      font-style: italic;
+    }
+
+    @media (max-width: 768px) {
+      .grid-2 {
+        grid-template-columns: 1fr;
+      }
+
+      .checkbox-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .presets-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>🎮 Skill Button 交互式 Demo</h1>
+      <p>实时配置和预览 Skill Button 组件的各种状态和样式</p>
+    </div>
+
+    <div class="demo-wrapper">
+      <h2 class="demo-title">🎛️ 配置面板 & 预览</h2>
+
+      <div class="grid-2">
+        <!-- Configuration Panel -->
+        <div class="panel">
+          <h4>⚙️ 配置选项</h4>
+
+          <div class="form-group">
+            <label for="content">内容文本</label>
+            <input type="text" id="content" value="Click me!" />
+          </div>
+
+          <div class="form-group">
+            <label for="variant">变体 (variant)</label>
+            <select id="variant">
+              <option value="primary">primary</option>
+              <option value="secondary">secondary</option>
+              <option value="ghost">ghost</option>
+              <option value="text">text</option>
+              <option value="success">success</option>
+              <option value="danger">danger</option>
+              <option value="outline">outline</option>
+              <option value="soft">soft</option>
+              <option value="gradient">gradient</option>
+              <option value="link">link</option>
+              <option value="warning">warning</option>
+              <option value="info">info</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="size">尺寸 (size)</label>
+            <select id="size">
+              <option value="xs">xs</option>
+              <option value="sm">sm</option>
+              <option value="md" selected>md</option>
+              <option value="lg">lg</option>
+              <option value="xl">xl</option>
+              <option value="2xl">2xl</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="shape">形状 (shape)</label>
+            <select id="shape">
+              <option value="">默认</option>
+              <option value="square">square</option>
+              <option value="rounded">rounded</option>
+              <option value="pill">pill</option>
+              <option value="capsule">capsule</option>
+              <option value="circle">circle</option>
+              <option value="floating">floating</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="badge">徽章文本 (badge)</label>
+            <input type="text" id="badge" placeholder="例如: 5" />
+          </div>
+
+          <div class="form-group">
+            <label for="tooltip">工具提示 (tooltip)</label>
+            <input type="text" id="tooltip" placeholder="例如: 点击我试试" />
+          </div>
+
+          <!-- Toggle options -->
+          <div class="checkbox-grid">
+            <label class="checkbox-label">
+              <input type="checkbox" id="loading" />
+              加载中
+            </label>
+            <label class="checkbox-label">
+              <input type="checkbox" id="disabled" />
+              禁用
+            </label>
+            <label class="checkbox-label">
+              <input type="checkbox" id="fullWidth" />
+              全宽
+            </label>
+            <label class="checkbox-label">
+              <input type="checkbox" id="glow" />
+              发光效果
+            </label>
+            <label class="checkbox-label">
+              <input type="checkbox" id="threeDimensional" />
+              3D效果
+            </label>
+          </div>
+        </div>
+
+        <!-- Preview Panel -->
+        <div class="panel">
+          <h4>👀 预览效果</h4>
+
+          <div class="preview-area">
+            <skill-button id="previewButton">Click me!</skill-button>
+          </div>
+
+          <!-- Event log -->
+          <div class="event-log">
+            <h5>📋 事件日志</h5>
+            <div id="eventList">
+              <div class="empty-state">与按钮交互查看事件...</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Code Generation -->
+      <div class="code-section">
+        <div class="code-header">
+          <h4>📝 生成的代码</h4>
+          <button class="btn" id="toggleCode">显示代码</button>
+        </div>
+
+        <div class="code-container hidden" id="codeContainer">
+          <button class="copy-btn" id="copyCode">复制</button>
+          <pre id="generatedCode"></pre>
+        </div>
+      </div>
+
+        <!-- Quick Presets -->
+        <div class="presets-section">
+          <h4>🎨 快速预设</h4>
+          <div class="presets-grid">
+            <button class="preset-btn" data-preset="primary">主要按钮</button>
+            <button class="preset-btn" data-preset="danger">危险按钮</button>
+            <button class="preset-btn" data-preset="ghost">幽灵按钮</button>
+            <button class="preset-btn" data-preset="loading">加载按钮</button>
+            <button class="preset-btn" data-preset="gradient">发光按钮</button>
+            <button class="preset-btn" data-preset="badge">带徽章</button>
+            <button class="preset-btn" data-preset="circle">圆形按钮</button>
+            <button class="preset-btn" data-preset="fullwidth">全宽按钮</button>
+            <button class="preset-btn" data-preset="capsule">胶囊按钮</button>
+            <button class="preset-btn" data-preset="floating">浮动按钮</button>
+          </div>
+        </div>
+    </div>
+  </div>
+
+  <!-- React and dependencies -->
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script type="text/babel">
+    const { useState, useEffect } = React;
+
+    // 预设配置
+    const presets = {
+      primary: { variant: 'primary', size: 'md' },
+      danger: { variant: 'danger', size: 'md' },
+      ghost: { variant: 'ghost', size: 'sm' },
+      loading: { variant: 'primary', loading: true },
+      gradient: { variant: 'gradient', glow: true },
+      badge: { variant: 'primary', badge: '5' },
+      circle: { variant: 'primary', shape: 'circle', size: 'lg' },
+      fullwidth: { variant: 'primary', fullWidth: true },
+      capsule: { variant: 'primary', shape: 'capsule', size: 'md' },
+      floating: { variant: 'primary', shape: 'floating', size: 'md' }
+    };
+
+    function ButtonDemo() {
+      const [config, setConfig] = useState({
+        content: 'Click me!',
+        variant: 'primary',
+        size: 'md',
+        shape: '',
+        loading: false,
+        disabled: false,
+        fullWidth: false,
+        glow: false,
+        threeDimensional: false,
+        badge: '',
+        tooltip: ''
+      });
+
+      const [showCode, setShowCode] = useState(false);
+      const [buttonEvents, setButtonEvents] = useState([]);
+
+      // 添加事件
+      const addEvent = (eventType) => {
+        const newEvent = {
+          type: eventType,
+          timestamp: new Date().toLocaleTimeString(),
+          id: Date.now()
+        };
+        setButtonEvents(prev => [newEvent, ...prev.slice(0, 4)]);
+      };
+
+      // 生成代码
+      const generateCode = () => {
+        const props = [];
+
+        if (config.variant !== 'primary') props.push(`variant="${config.variant}"`);
+        if (config.size !== 'md') props.push(`size="${config.size}"`);
+        if (config.shape) props.push(`shape="${config.shape}"`);
+        if (config.loading) props.push('loading');
+        if (config.disabled) props.push('disabled');
+        if (config.fullWidth) props.push('full-width');
+        if (config.glow) props.push('glow');
+        if (config.threeDimensional) props.push('three-d');
+        if (config.badge) props.push(`badge="${config.badge}"`);
+        if (config.tooltip) props.push(`tooltip="${config.tooltip}"`);
+
+        const propsString = props.length > 0 ? ' ' + props.join(' ') : '';
+        return `<skill-button${propsString}>${config.content}</skill-button>`;
+      };
+
+      // 更新按钮配置
+      const updateButton = () => {
+        const button = document.getElementById('previewButton');
+        if (button) {
+          // 清除所有属性
+          button.removeAttribute('variant');
+          button.removeAttribute('size');
+          button.removeAttribute('shape');
+          button.removeAttribute('loading');
+          button.removeAttribute('disabled');
+          button.removeAttribute('full-width');
+          button.removeAttribute('glow');
+          button.removeAttribute('three-d');
+          button.removeAttribute('badge');
+          button.removeAttribute('tooltip');
+
+          // 设置新属性
+          if (config.variant !== 'primary') button.setAttribute('variant', config.variant);
+          if (config.size !== 'md') button.setAttribute('size', config.size);
+          if (config.shape) button.setAttribute('shape', config.shape);
+          if (config.loading) button.setAttribute('loading', '');
+          if (config.disabled) button.setAttribute('disabled', '');
+          if (config.fullWidth) button.setAttribute('full-width', '');
+          if (config.glow) button.setAttribute('glow', '');
+          if (config.threeDimensional) button.setAttribute('three-d', '');
+          if (config.badge) button.setAttribute('badge', config.badge);
+          if (config.tooltip) button.setAttribute('tooltip', config.tooltip);
+
+          // 更新内容
+          button.textContent = config.content;
+        }
+
+        // 更新代码显示
+        const codeElement = document.getElementById('generatedCode');
+        if (codeElement) {
+          codeElement.textContent = generateCode();
+        }
+      };
+
+      // 更新事件日志
+      const updateEventLog = () => {
+        const eventList = document.getElementById('eventList');
+        if (eventList) {
+          if (buttonEvents.length === 0) {
+            eventList.innerHTML = '<div class="empty-state">与按钮交互查看事件...</div>';
+          } else {
+            eventList.innerHTML = buttonEvents.map(event => `
+              <div class="event-item">
+                <span class="event-type">${event.type}</span> - ${event.timestamp}
+              </div>
+            `).join('');
+          }
+        }
+      };
+
+      // 监听配置变化
+      useEffect(() => {
+        updateButton();
+      }, [config]);
+
+      // 监听事件变化
+      useEffect(() => {
+        updateEventLog();
+      }, [buttonEvents]);
+
+      // 绑定表单事件
+      useEffect(() => {
+        const handleInputChange = (key, value) => {
+          setConfig(prev => ({ ...prev, [key]: value }));
+        };
+
+        // 绑定输入框
+        document.getElementById('content').addEventListener('input', (e) => {
+          handleInputChange('content', e.target.value);
+        });
+
+        document.getElementById('variant').addEventListener('change', (e) => {
+          handleInputChange('variant', e.target.value);
+        });
+
+        document.getElementById('size').addEventListener('change', (e) => {
+          handleInputChange('size', e.target.value);
+        });
+
+        document.getElementById('shape').addEventListener('change', (e) => {
+          handleInputChange('shape', e.target.value);
+        });
+
+        document.getElementById('badge').addEventListener('input', (e) => {
+          handleInputChange('badge', e.target.value);
+        });
+
+        document.getElementById('tooltip').addEventListener('input', (e) => {
+          handleInputChange('tooltip', e.target.value);
+        });
+
+        // 绑定复选框
+        const checkboxes = ['loading', 'disabled', 'fullWidth', 'glow', 'threeDimensional'];
+        checkboxes.forEach(id => {
+          document.getElementById(id).addEventListener('change', (e) => {
+            handleInputChange(id, e.target.checked);
+          });
+        });
+
+        // 绑定按钮事件
+        const button = document.getElementById('previewButton');
+        if (button) {
+          button.addEventListener('skill-click', () => addEvent('click'));
+          button.addEventListener('skill-focus', () => addEvent('focus'));
+          button.addEventListener('skill-blur', () => addEvent('blur'));
+        }
+
+        // 绑定代码切换
+        document.getElementById('toggleCode').addEventListener('click', () => {
+          setShowCode(!showCode);
+        });
+
+        // 绑定复制代码
+        document.getElementById('copyCode').addEventListener('click', () => {
+          navigator.clipboard.writeText(generateCode());
+          alert('代码已复制到剪贴板！');
+        });
+
+        // 绑定预设按钮
+        document.querySelectorAll('.preset-btn').forEach(btn => {
+          btn.addEventListener('click', (e) => {
+            const presetName = e.target.dataset.preset;
+            if (presets[presetName]) {
+              setConfig(prev => ({ ...prev, ...presets[presetName] }));
+            }
+          });
+        });
+
+        return () => {
+          // 清理事件监听器
+          document.getElementById('content').removeEventListener('input', handleInputChange);
+          document.getElementById('variant').removeEventListener('change', handleInputChange);
+          // ... 其他清理代码
+        };
+      }, []);
+
+      // 更新代码显示状态
+      useEffect(() => {
+        const codeContainer = document.getElementById('codeContainer');
+        const toggleBtn = document.getElementById('toggleCode');
+
+        if (codeContainer && toggleBtn) {
+          if (showCode) {
+            codeContainer.classList.remove('hidden');
+            toggleBtn.textContent = '隐藏代码';
+          } else {
+            codeContainer.classList.add('hidden');
+            toggleBtn.textContent = '显示代码';
+          }
+        }
+      }, [showCode]);
+
+      return null; // 这个组件只负责状态管理，不需要渲染任何内容
+    }
+
+    // 渲染应用 - 使用 React 18 新 API
+    const root = ReactDOM.createRoot(document.getElementById('react-root'));
+    root.render(<ButtonDemo />);
+  </script>
+
+  <div id="react-root" style="display: none;"></div>
+
+  <!-- 引入组件库 -->
+  <script type="module" src="/src/index.ts"></script>
+</body>
+</html>

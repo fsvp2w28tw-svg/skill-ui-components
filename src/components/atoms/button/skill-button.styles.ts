@@ -26,6 +26,8 @@ import {
   buttonShapeSquare,
   buttonShapePill,
   buttonShapeCircle,
+  buttonShapeCapsule,
+  buttonShapeFloating,
 } from '../../../styles/mixins';
 
 /**
@@ -52,12 +54,19 @@ export const buttonStyles = css`
     justify-content: center;
     gap: var(--skill-spacing-xs);
     transition: all var(--skill-transition-duration-fast) var(--skill-transition-easing);
-    overflow: hidden;
+    /* 移除 overflow: hidden 以允许 badge 显示在按钮边界外 */
 
     /* 自定义属性支持（向后兼容） */
     background: var(--button-bg, var(--skill-primary-500));
     color: var(--button-color, var(--skill-gray-0));
     border-color: var(--button-border, transparent);
+  }
+
+  /* 当有badge时，允许overflow显示 */
+  :host([badge]) button,
+  :host([badge]) a {
+    overflow: visible;
+    contain: layout style;
   }
 
   /* ===== 内容包装器 ===== */
@@ -102,6 +111,14 @@ export const buttonStyles = css`
   :host([size='xl']) button,
   :host([size='xl']) a {
     ${buttonSizeXL}
+  }
+
+  :host([size='2xl']) button,
+  :host([size='2xl']) a {
+    height: var(--skill-component-height-2xl);
+    padding: 0 var(--skill-spacing-2xl);
+    font-size: var(--skill-font-title-1);
+    gap: var(--skill-spacing-md);
   }
 
   /* ===== 变体样式 ===== */
@@ -299,16 +316,31 @@ export const buttonStyles = css`
     ${buttonLink}
   }
 
-  /* ===== 形状变体 ===== */
+  /* ===== 形状变体 - 鸿蒙设计规范 ===== */
 
   :host([shape='square']) button,
   :host([shape='square']) a {
     ${buttonShapeSquare}
   }
 
+  :host([shape='rounded']) button,
+  :host([shape='rounded']) a {
+    border-radius: var(--skill-radius-md); /* 8px 圆角 */
+  }
+
   :host([shape='pill']) button,
   :host([shape='pill']) a {
     ${buttonShapePill}
+  }
+
+  :host([shape='capsule']) button,
+  :host([shape='capsule']) a {
+    ${buttonShapeCapsule}
+  }
+
+  :host([shape='floating']) button,
+  :host([shape='floating']) a {
+    ${buttonShapeFloating}
   }
 
   :host([shape='circle']) button,
@@ -337,6 +369,11 @@ export const buttonStyles = css`
     width: var(--skill-component-height-xl);
   }
 
+  :host([shape='circle'][size='2xl']) button,
+  :host([shape='circle'][size='2xl']) a {
+    width: var(--skill-component-height-2xl);
+  }
+
   /* ===== 特殊效果 ===== */
 
   :host([glow]) button,
@@ -344,8 +381,8 @@ export const buttonStyles = css`
     ${buttonGlow}
   }
 
-  :host([3d]) button,
-  :host([3d]) a {
+  :host([three-d]) button,
+  :host([three-d]) a {
     ${button3D}
   }
 
@@ -425,14 +462,88 @@ export const buttonStyles = css`
     align-items: center;
     justify-content: center;
     box-shadow: var(--skill-shadow-1);
-    z-index: 1;
+    z-index: var(--skill-z-badge, 10);
     pointer-events: none;
     transform: scale(0);
     transition: transform var(--skill-transition-duration-fast) var(--skill-transition-easing);
+    border: 2px solid var(--skill-gray-0, #ffffff);
+    line-height: 1;
   }
 
   :host([badge]) .skill-button__badge {
     transform: scale(1);
+  }
+
+  /* 不同按钮尺寸下的badge适配 */
+  :host([size='xs']) .skill-button__badge {
+    top: -4px;
+    right: -4px;
+    min-width: 14px;
+    height: 14px;
+    padding: 0 4px;
+    font-size: 9px;
+    border-radius: 7px;
+    border-width: 1.5px;
+  }
+
+  :host([size='sm']) .skill-button__badge {
+    top: -5px;
+    right: -5px;
+    min-width: 16px;
+    height: 16px;
+    padding: 0 5px;
+    font-size: 9px;
+    border-radius: 8px;
+    border-width: 1.5px;
+  }
+
+  :host([size='lg']) .skill-button__badge {
+    top: -7px;
+    right: -7px;
+    min-width: 20px;
+    height: 20px;
+    padding: 0 7px;
+    font-size: 11px;
+    border-radius: 10px;
+    border-width: 2px;
+  }
+
+  :host([size='xl']) .skill-button__badge {
+    top: -8px;
+    right: -8px;
+    min-width: 22px;
+    height: 22px;
+    padding: 0 8px;
+    font-size: 12px;
+    border-radius: 11px;
+    border-width: 2px;
+  }
+
+  :host([size='2xl']) .skill-button__badge {
+    top: -9px;
+    right: -9px;
+    min-width: 24px;
+    height: 24px;
+    padding: 0 9px;
+    font-size: 13px;
+    border-radius: 12px;
+    border-width: 2px;
+  }
+
+  /* 圆形按钮的badge适配 */
+  :host([shape='circle']) .skill-button__badge {
+    top: -2px;
+    right: -2px;
+  }
+
+  :host([shape='circle'][size='xs']) .skill-button__badge {
+    top: -1px;
+    right: -1px;
+  }
+
+  :host([shape='circle'][size='sm']) .skill-button__badge {
+    top: -1px;
+    right: -1px;
   }
 
   /* Tooltip 样式 */
@@ -468,10 +579,17 @@ export const buttonStyles = css`
     border-top-color: var(--skill-gray-900, #111827);
   }
 
-  button:hover + .skill-button__tooltip,
-  a:hover + .skill-button__tooltip,
-  button:focus + .skill-button__tooltip,
-  a:focus + .skill-button__tooltip {
+  /* 修复tooltip显示：使用:host选择器而不是兄弟选择器 */
+  :host(:hover) .skill-button__tooltip,
+  :host(:focus-within) .skill-button__tooltip {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(-2px);
+  }
+
+  /* 确保tooltip在有badge的按钮上也能正常显示 */
+  :host([badge]:hover) .skill-button__tooltip,
+  :host([badge]:focus-within) .skill-button__tooltip {
     opacity: 1;
     visibility: visible;
     transform: translateX(-50%) translateY(-2px);
@@ -495,6 +613,11 @@ export const buttonStyles = css`
 
   :host([size='xl']) .skill-button__spinner {
     --skill-spinner-size: 24px;
+    --skill-spinner-thickness: 3px;
+  }
+
+  :host([size='2xl']) .skill-button__spinner {
+    --skill-spinner-size: 28px;
     --skill-spinner-thickness: 3px;
   }
 

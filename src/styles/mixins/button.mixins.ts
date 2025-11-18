@@ -5,20 +5,21 @@
 import { css } from 'lit';
 
 /**
- * 基础按钮样式 - 性能优化版
+ * 基础按钮样式 - 鸿蒙设计规范
  */
 export const buttonBase = css`
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: var(--skill-spacing-sm);
+  gap: var(--skill-button-icon-spacing, var(--skill-spacing-sm));
   height: var(--skill-component-height-md);
   padding: 0 var(--skill-spacing-md);
   font-family: var(--skill-font-sans);
   font-size: var(--skill-font-body-2);
   font-weight: var(--skill-font-medium);
   line-height: 1;
-  border-radius: var(--skill-radius-sm);
+  letter-spacing: var(--skill-letter-spacing-tight, -0.1px); /* 鸿蒙规范：更紧凑的字间距 */
+  border-radius: var(--skill-radius-sm); /* 鸿蒙规范：使用6px圆角 */
   border: 1px solid transparent;
   cursor: pointer;
   /* 只过渡必要的属性，避免 transition: all */
@@ -30,6 +31,7 @@ export const buttonBase = css`
   outline: none;
   position: relative;
   overflow: hidden;
+  z-index: var(--skill-z-button, 100); /* 鸿蒙规范：按钮层级 */
 
   /* 性能优化 */
   contain: layout style paint;
@@ -43,6 +45,7 @@ export const buttonBase = css`
   &:focus-visible {
     outline: 2px solid var(--skill-primary-500);
     outline-offset: 2px;
+    z-index: var(--skill-z-button-focus, 15); /* 焦点状态更高层级 */
   }
 `;
 
@@ -55,22 +58,23 @@ export const buttonRipple = css`
 `;
 
 /**
- * 主要按钮样式 - 性能优化版
+ * 主要按钮样式 - 鸿蒙设计规范
  */
 export const buttonPrimary = css`
   background: var(--skill-primary-500);
   color: var(--skill-gray-0);
-  box-shadow: var(--skill-shadow-1);
+  box-shadow: var(--skill-shadow-button-harmony-resting, var(--skill-shadow-1));
 
   &:hover:not(:disabled) {
     background: var(--skill-primary-400);
-    box-shadow: var(--skill-shadow-2);
-    /* 移除 transform 以提升性能 */
+    box-shadow: var(--skill-shadow-button-harmony-hover, var(--skill-shadow-2));
+    transform: translateY(-1px); /* 鸿蒙规范：轻微上浮效果 */
   }
 
   &:active:not(:disabled) {
     background: var(--skill-primary-600);
-    box-shadow: var(--skill-shadow-1);
+    box-shadow: var(--skill-shadow-button-harmony-pressed, var(--skill-shadow-1));
+    transform: translateY(0); /* 鸿蒙规范：按下回到原位 */
   }
 `;
 
@@ -443,6 +447,37 @@ export const buttonShapeCircle = css`
   aspect-ratio: 1;
   padding: 0;
   width: var(--skill-component-height-md);
+`;
+
+/**
+ * 形状 - Capsule (胶囊按钮) - 鸿蒙设计规范
+ */
+export const buttonShapeCapsule = css`
+  border-radius: var(--skill-radius-2xl); /* 20px 圆角 */
+  padding: 0 var(--skill-button-capsule-padding-horizontal, 24px);
+  font-weight: 500;
+  letter-spacing: var(--skill-letter-spacing-tight, -0.1px);
+`;
+
+/**
+ * 形状 - Floating (浮动按钮) - 鸿蒙设计规范
+ */
+export const buttonShapeFloating = css`
+  width: var(--skill-button-floating-size, 56px);
+  height: var(--skill-button-floating-size, 56px);
+  border-radius: var(--skill-radius-xl); /* 16px 圆角，不完全圆形 */
+  box-shadow: var(--skill-shadow-4);
+  z-index: var(--skill-z-button-floating, 15); /* 鸿蒙规范：浮动按钮高于avatar状态指示器 */
+
+  &:hover:not(:disabled) {
+    box-shadow: var(--skill-shadow-5);
+    transform: translateY(-2px);
+  }
+
+  &:active:not(:disabled) {
+    box-shadow: var(--skill-shadow-3);
+    transform: translateY(0);
+  }
 `;
 
 /**
