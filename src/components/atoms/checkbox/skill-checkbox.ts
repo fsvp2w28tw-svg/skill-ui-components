@@ -77,13 +77,13 @@ export class SkillCheckbox extends LitElement {
   /**
    * The checkbox size
    */
-  @property({ type: String })
+  @property({ type: String, reflect: true })
   size: Size = 'md';
 
   /**
    * The checkbox color variant
    */
-  @property({ type: String })
+  @property({ type: String, reflect: true })
   color: 'primary' | 'secondary' | 'success' | 'warning' | 'error' | 'info' = 'primary';
 
   /**
@@ -113,7 +113,7 @@ export class SkillCheckbox extends LitElement {
   /**
    * The checkbox variant style
    */
-  @property({ type: String })
+  @property({ type: String, reflect: true })
   variant: 'default' | 'filled' | 'outlined' = 'default';
 
   connectedCallback() {

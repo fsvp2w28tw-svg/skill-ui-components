@@ -18,6 +18,7 @@ export const checkboxStyles = css`
     --skill-checkbox-border-color-hover: var(--skill-primary-600, #0047D3);
     --skill-checkbox-border-color-focus: var(--skill-primary-500, #0A59F7);
     --skill-checkbox-border-color-checked: var(--skill-primary-500, #0A59F7);
+    --skill-checkbox-checked-bg-color: var(--skill-primary-500, #0A59F7);
     --skill-checkbox-check-color: var(--skill-gray-0, #ffffff);
     --skill-checkbox-disabled-bg-color: var(--skill-gray-50, #FAFAFA);
     --skill-checkbox-disabled-border-color: var(--skill-gray-300, #D1D5DB);
@@ -60,6 +61,7 @@ export const checkboxStyles = css`
     --skill-checkbox-border-color-focus: var(--skill-primary-500, #0A59F7);
     --skill-checkbox-border-color-checked: var(--skill-primary-500, #0A59F7);
     --skill-checkbox-checked-bg-color: var(--skill-primary-500, #0A59F7);
+    --skill-checkbox-check-color: var(--skill-gray-0, #ffffff);
   }
 
   :host([color='secondary']) {
@@ -67,6 +69,7 @@ export const checkboxStyles = css`
     --skill-checkbox-border-color-focus: var(--skill-secondary-500, #00D4AA);
     --skill-checkbox-border-color-checked: var(--skill-secondary-500, #00D4AA);
     --skill-checkbox-checked-bg-color: var(--skill-secondary-500, #00D4AA);
+    --skill-checkbox-check-color: var(--skill-gray-0, #ffffff);
   }
 
   :host([color='success']) {
@@ -74,6 +77,7 @@ export const checkboxStyles = css`
     --skill-checkbox-border-color-focus: var(--skill-success-500, #00D4AA);
     --skill-checkbox-border-color-checked: var(--skill-success-500, #00D4AA);
     --skill-checkbox-checked-bg-color: var(--skill-success-500, #00D4AA);
+    --skill-checkbox-check-color: var(--skill-gray-0, #ffffff);
   }
 
   :host([color='warning']) {
@@ -81,6 +85,7 @@ export const checkboxStyles = css`
     --skill-checkbox-border-color-focus: var(--skill-warning-500, #FFB400);
     --skill-checkbox-border-color-checked: var(--skill-warning-500, #FFB400);
     --skill-checkbox-checked-bg-color: var(--skill-warning-500, #FFB400);
+    --skill-checkbox-check-color: var(--skill-gray-0, #ffffff);
   }
 
   :host([color='error']) {
@@ -88,6 +93,7 @@ export const checkboxStyles = css`
     --skill-checkbox-border-color-focus: var(--skill-error-500, #FA2A2D);
     --skill-checkbox-border-color-checked: var(--skill-error-500, #FA2A2D);
     --skill-checkbox-checked-bg-color: var(--skill-error-500, #FA2A2D);
+    --skill-checkbox-check-color: var(--skill-gray-0, #ffffff);
   }
 
   :host([color='info']) {
@@ -95,6 +101,7 @@ export const checkboxStyles = css`
     --skill-checkbox-border-color-focus: var(--skill-info-500, #0A59F7);
     --skill-checkbox-border-color-checked: var(--skill-info-500, #0A59F7);
     --skill-checkbox-checked-bg-color: var(--skill-info-500, #0A59F7);
+    --skill-checkbox-check-color: var(--skill-gray-0, #ffffff);
   }
 
   /* Main checkbox container */
@@ -312,13 +319,17 @@ export const checkboxStyles = css`
   /* Dark mode support */
   @media (prefers-color-scheme: dark) {
     :host {
-      --skill-checkbox-bg-color: var(--skill-gray-900, #1A1A1A);
       --skill-checkbox-border-color: var(--skill-gray-600, #6B7280);
       --skill-checkbox-label-color: var(--skill-gray-200, #E5E8EB);
       --skill-checkbox-helper-text-color: var(--skill-gray-400, #BDBDBD);
       --skill-checkbox-disabled-bg-color: var(--skill-gray-950, #111827);
       --skill-checkbox-disabled-border-color: var(--skill-gray-700, #5A5A5A);
       --skill-checkbox-disabled-check-color: var(--skill-gray-500, #8A8A8A);
+    }
+
+    /* Only lighten the unchecked state so checked still follows the theme color */
+    :host(:not([checked]):not([indeterminate])) {
+      --skill-checkbox-bg-color: var(--skill-gray-0, #ffffff);
     }
 
     :host([variant='filled']:not([checked]):not([indeterminate])) .skill-checkbox__control {

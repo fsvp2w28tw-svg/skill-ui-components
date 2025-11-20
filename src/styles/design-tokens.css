@@ -28,9 +28,9 @@
   --skill-quaternary-500: #FFB400;
 
   /* 功能色 */
-  --skill-success-500: #00D4AA;
-  --skill-success-50: #E6FBF5;
-  --skill-success-100: #B3F5E0;
+  --skill-success-500: #22C55E;
+  --skill-success-50: #ECFDF3;
+  --skill-success-100: #D1FADF;
 
   --skill-warning-500: #FFB400;
   --skill-warning-50: #FFF8E6;
@@ -42,9 +42,9 @@
   --skill-error-600: #DC2626;
   --skill-error-700: #B91C1C;
 
-  --skill-info-500: #0A59F7;
-  --skill-info-50: #E6F0FF;
-  --skill-info-100: #B3D4FF;
+  --skill-info-500: #0EA5E9;
+  --skill-info-50: #E0F2FE;
+  --skill-info-100: #BAE6FD;
 
   /* 中性色 - Skill灰阶 */
   --skill-gray-0: #FFFFFF;
