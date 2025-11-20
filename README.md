@@ -49,9 +49,16 @@ import './node_modules/@skill/ui-components/dist/skill-ui.umd.js';
 <body>
   <skill-button variant="primary">主要按钮</skill-button>
   <skill-input placeholder="请输入内容" label="输入框"></skill-input>
-  <skill-card>
+  <skill-card hoverable media-position="start">
+    <div slot="media">
+      <strong>北极光营地</strong>
+      <span>多云 · 8℃ · 极夜</span>
+    </div>
     <div slot="header">卡片标题</div>
-    <div slot="content">卡片内容</div>
+    <p>卡片内容</p>
+    <div slot="footer">
+      <button>了解更多</button>
+    </div>
   </skill-card>
 
   <script type="module">
@@ -150,6 +157,12 @@ export class AppComponent {
   }
 }
 ```
+
+### Skill Card 功能亮点
+
+- 支持 `slot="media"` 与 `media-position="top|start"`，可实现图文/横向卡片布局。
+- 新增 `loading`、`loading-text` 与 `disabled` 属性，内置遮罩和状态样式。
+- `hoverable` 卡片自动具备 `role="button"`、键盘 Enter/Space 激活以及 `skill-click` 键盘事件。
 
 ## 可用组件
 

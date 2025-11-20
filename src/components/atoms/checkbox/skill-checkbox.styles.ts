@@ -13,24 +13,24 @@ export const checkboxStyles = css`
     --skill-checkbox-stroke-width: var(--skill-stroke-width-md, 2px);
 
     /* Color variables */
-    --skill-checkbox-bg-color: var(--skill-white, #ffffff);
-    --skill-checkbox-border-color: var(--skill-gray-300, #e1e5e9);
-    --skill-checkbox-border-color-hover: var(--skill-primary-600, #0056b3);
-    --skill-checkbox-border-color-focus: var(--skill-primary-500, #0066cc);
-    --skill-checkbox-border-color-checked: var(--skill-primary-500, #0066cc);
-    --skill-checkbox-check-color: var(--skill-white, #ffffff);
-    --skill-checkbox-disabled-bg-color: var(--skill-gray-100, #f8f9fa);
-    --skill-checkbox-disabled-border-color: var(--skill-gray-200, #dee2e6);
-    --skill-checkbox-disabled-check-color: var(--skill-gray-400, #6c757d);
-    --skill-checkbox-error-border-color: var(--skill-error-500, #dc3545);
+    --skill-checkbox-bg-color: var(--skill-gray-0, #ffffff);
+    --skill-checkbox-border-color: var(--skill-gray-200, #E5E8EB);
+    --skill-checkbox-border-color-hover: var(--skill-primary-600, #0047D3);
+    --skill-checkbox-border-color-focus: var(--skill-primary-500, #0A59F7);
+    --skill-checkbox-border-color-checked: var(--skill-primary-500, #0A59F7);
+    --skill-checkbox-check-color: var(--skill-gray-0, #ffffff);
+    --skill-checkbox-disabled-bg-color: var(--skill-gray-50, #FAFAFA);
+    --skill-checkbox-disabled-border-color: var(--skill-gray-300, #D1D5DB);
+    --skill-checkbox-disabled-check-color: var(--skill-gray-400, #BDBDBD);
+    --skill-checkbox-error-border-color: var(--skill-error-500, #FA2A2D);
 
     /* Label colors */
-    --skill-checkbox-label-color: var(--skill-gray-900, #212529);
-    --skill-checkbox-label-color-disabled: var(--skill-gray-500, #6c757d);
+    --skill-checkbox-label-color: var(--skill-gray-900, #1A1A1A);
+    --skill-checkbox-label-color-disabled: var(--skill-gray-500, #8A8A8A);
 
     /* Helper text colors */
-    --skill-checkbox-helper-text-color: var(--skill-gray-600, #6c757d);
-    --skill-checkbox-error-text-color: var(--skill-error-500, #dc3545);
+    --skill-checkbox-helper-text-color: var(--skill-gray-600, #6B7280);
+    --skill-checkbox-error-text-color: var(--skill-error-500, #FA2A2D);
   }
 
   /* Size variants */
@@ -56,45 +56,45 @@ export const checkboxStyles = css`
 
   /* Color variants */
   :host([color='primary']) {
-    --skill-checkbox-border-color-hover: var(--skill-primary-600, #0056b3);
-    --skill-checkbox-border-color-focus: var(--skill-primary-500, #0066cc);
-    --skill-checkbox-border-color-checked: var(--skill-primary-500, #0066cc);
-    --skill-checkbox-checked-bg-color: var(--skill-primary-500, #0066cc);
+    --skill-checkbox-border-color-hover: var(--skill-primary-600, #0047D3);
+    --skill-checkbox-border-color-focus: var(--skill-primary-500, #0A59F7);
+    --skill-checkbox-border-color-checked: var(--skill-primary-500, #0A59F7);
+    --skill-checkbox-checked-bg-color: var(--skill-primary-500, #0A59F7);
   }
 
   :host([color='secondary']) {
-    --skill-checkbox-border-color-hover: var(--skill-gray-600, #5c636a);
-    --skill-checkbox-border-color-focus: var(--skill-gray-500, #6c757d);
-    --skill-checkbox-border-color-checked: var(--skill-gray-500, #6c757d);
-    --skill-checkbox-checked-bg-color: var(--skill-gray-500, #6c757d);
+    --skill-checkbox-border-color-hover: var(--skill-secondary-500, #00D4AA);
+    --skill-checkbox-border-color-focus: var(--skill-secondary-500, #00D4AA);
+    --skill-checkbox-border-color-checked: var(--skill-secondary-500, #00D4AA);
+    --skill-checkbox-checked-bg-color: var(--skill-secondary-500, #00D4AA);
   }
 
   :host([color='success']) {
-    --skill-checkbox-border-color-hover: var(--skill-success-600, #218838);
-    --skill-checkbox-border-color-focus: var(--skill-success-500, #28a745);
-    --skill-checkbox-border-color-checked: var(--skill-success-500, #28a745);
-    --skill-checkbox-checked-bg-color: var(--skill-success-500, #28a745);
+    --skill-checkbox-border-color-hover: var(--skill-success-500, #00D4AA);
+    --skill-checkbox-border-color-focus: var(--skill-success-500, #00D4AA);
+    --skill-checkbox-border-color-checked: var(--skill-success-500, #00D4AA);
+    --skill-checkbox-checked-bg-color: var(--skill-success-500, #00D4AA);
   }
 
   :host([color='warning']) {
-    --skill-checkbox-border-color-hover: var(--skill-warning-600, #e0a800);
-    --skill-checkbox-border-color-focus: var(--skill-warning-500, #ffc107);
-    --skill-checkbox-border-color-checked: var(--skill-warning-500, #ffc107);
-    --skill-checkbox-checked-bg-color: var(--skill-warning-500, #ffc107);
+    --skill-checkbox-border-color-hover: var(--skill-warning-500, #FFB400);
+    --skill-checkbox-border-color-focus: var(--skill-warning-500, #FFB400);
+    --skill-checkbox-border-color-checked: var(--skill-warning-500, #FFB400);
+    --skill-checkbox-checked-bg-color: var(--skill-warning-500, #FFB400);
   }
 
   :host([color='error']) {
-    --skill-checkbox-border-color-hover: var(--skill-error-600, #c82333);
-    --skill-checkbox-border-color-focus: var(--skill-error-500, #dc3545);
-    --skill-checkbox-border-color-checked: var(--skill-error-500, #dc3545);
-    --skill-checkbox-checked-bg-color: var(--skill-error-500, #dc3545);
+    --skill-checkbox-border-color-hover: var(--skill-error-500, #FA2A2D);
+    --skill-checkbox-border-color-focus: var(--skill-error-500, #FA2A2D);
+    --skill-checkbox-border-color-checked: var(--skill-error-500, #FA2A2D);
+    --skill-checkbox-checked-bg-color: var(--skill-error-500, #FA2A2D);
   }
 
   :host([color='info']) {
-    --skill-checkbox-border-color-hover: var(--skill-info-600, #138496);
-    --skill-checkbox-border-color-focus: var(--skill-info-500, #17a2b8);
-    --skill-checkbox-border-color-checked: var(--skill-info-500, #17a2b8);
-    --skill-checkbox-checked-bg-color: var(--skill-info-500, #17a2b8);
+    --skill-checkbox-border-color-hover: var(--skill-info-500, #0A59F7);
+    --skill-checkbox-border-color-focus: var(--skill-info-500, #0A59F7);
+    --skill-checkbox-border-color-checked: var(--skill-info-500, #0A59F7);
+    --skill-checkbox-checked-bg-color: var(--skill-info-500, #0A59F7);
   }
 
   /* Main checkbox container */
@@ -134,14 +134,14 @@ export const checkboxStyles = css`
   }
 
   .skill-checkbox__input:focus-visible + .skill-checkbox__control {
-    box-shadow: 0 0 0 2px var(--skill-white, #ffffff),
+    box-shadow: 0 0 0 2px var(--skill-gray-0, #ffffff),
                 0 0 0 4px var(--skill-checkbox-border-color-focus);
     outline: none;
   }
 
   :host([has-error]) .skill-checkbox__input:focus-visible + .skill-checkbox__control,
   :host([error]) .skill-checkbox__input:focus-visible + .skill-checkbox__control {
-    box-shadow: 0 0 0 2px var(--skill-white, #ffffff),
+    box-shadow: 0 0 0 2px var(--skill-gray-0, #ffffff),
                 0 0 0 4px var(--skill-checkbox-error-border-color);
   }
 
@@ -189,12 +189,12 @@ export const checkboxStyles = css`
   }
 
   /* Variant styles */
-  :host([variant='filled']) .skill-checkbox__control {
-    background-color: var(--skill-gray-50, #f8f9fa);
+  :host([variant='filled']:not([checked]):not([indeterminate])) .skill-checkbox__control {
+    background-color: var(--skill-gray-50, #FAFAFA);
   }
 
   :host([variant='outlined']) .skill-checkbox__control {
-    border-width: var(--skill-border-width-lg, 3px);
+    border-width: 3px;
   }
 
   /* Checkbox icons */
@@ -312,17 +312,17 @@ export const checkboxStyles = css`
   /* Dark mode support */
   @media (prefers-color-scheme: dark) {
     :host {
-      --skill-checkbox-bg-color: var(--skill-gray-800, #1a1a1a);
-      --skill-checkbox-border-color: var(--skill-gray-600, #6c757d);
-      --skill-checkbox-label-color: var(--skill-gray-200, #e9ecef);
-      --skill-checkbox-helper-text-color: var(--skill-gray-400, #adb5bd);
-      --skill-checkbox-disabled-bg-color: var(--skill-gray-900, #212529);
-      --skill-checkbox-disabled-border-color: var(--skill-gray-700, #495057);
-      --skill-checkbox-disabled-check-color: var(--skill-gray-500, #6c757d);
+      --skill-checkbox-bg-color: var(--skill-gray-900, #1A1A1A);
+      --skill-checkbox-border-color: var(--skill-gray-600, #6B7280);
+      --skill-checkbox-label-color: var(--skill-gray-200, #E5E8EB);
+      --skill-checkbox-helper-text-color: var(--skill-gray-400, #BDBDBD);
+      --skill-checkbox-disabled-bg-color: var(--skill-gray-950, #111827);
+      --skill-checkbox-disabled-border-color: var(--skill-gray-700, #5A5A5A);
+      --skill-checkbox-disabled-check-color: var(--skill-gray-500, #8A8A8A);
     }
 
-    :host([variant='filled']) .skill-checkbox__control {
-      background-color: var(--skill-gray-700, #495057);
+    :host([variant='filled']:not([checked]):not([indeterminate])) .skill-checkbox__control {
+      background-color: var(--skill-gray-700, #5A5A5A);
     }
   }
 `;
