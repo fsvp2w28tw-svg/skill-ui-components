@@ -81,6 +81,24 @@ export interface CollapseEventDetail {
 export class SkillCollapse extends LitElement {
   static styles = [baseStyles, collapseStyles];
 
+  constructor() {
+    super();
+    this._upgradeProperty('items');
+    this._upgradeProperty('defaultActiveKey');
+    this._upgradeProperty('activeKey');
+  }
+
+  /**
+   * Ensure properties set before component registration are upgraded properly.
+   */
+  private _upgradeProperty(prop: 'items' | 'defaultActiveKey' | 'activeKey') {
+    if (Object.prototype.hasOwnProperty.call(this, prop)) {
+      const value = (this as any)[prop];
+      delete (this as any)[prop];
+      (this as any)[prop] = value;
+    }
+  }
+
   /**
    * Array of collapse items
    */
